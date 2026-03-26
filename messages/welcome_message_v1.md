@@ -14,8 +14,9 @@ Thanks for creating a database on FalkorDB Cloud — you're all set to start bui
 
 Here are a few resources to help you get up and running:
 
+- 🎯 **[Your First Graph — Step-by-Step Guide](https://docs.falkordb.com/getting-started/)** — build a real graph from scratch using the CLI or Python, with OS-specific setup instructions
 - 📖 **[FalkorDB Documentation](https://docs.falkordb.com)** — everything from setup to advanced features
-- 🚀 **[Getting Started Guide](https://docs.falkordb.com/cloud)** — connect to your instance, run your first Cypher queries, and explore the browser UI
+- 🚀 **[Cloud Guide](https://docs.falkordb.com/cloud)** — connect to your instance, explore the browser UI, and manage your deployment
 - 🤖 **[GraphRAG SDK](https://docs.falkordb.com/genai-tools/graphrag-sdk)** — if you're building with GenAI, this is your starting point
 
 If you run into any issues or have questions, just reply to this message — we're happy to help.
