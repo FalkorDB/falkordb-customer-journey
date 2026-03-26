@@ -1,8 +1,7 @@
-# Zendesk Onboarding Message — New FalkorDB Cloud Customer (First DB Created)
-**Type:** Triggered message / ticket
+# Onboarding Message — New FalkorDB Cloud Customer (First DB Created)
 **Trigger:** User creates their first database on FalkorDB Cloud
+**Send timing:** Immediately upon first DB creation
 **Tone:** Professional & technical
-**Version:** 1.0
 
 ---
 
@@ -131,7 +130,7 @@ CREATE INDEX FOR (p:Person) ON (p.name)
 
 ### Need Help?
 
-If you run into any issues or have questions about your setup, reply to this ticket and our team will get back to you.
+If you run into any issues or have questions about your setup, reply to this message and our team will get back to you.
 
 You can also reach us at **support@falkordb.com**.
 
@@ -141,11 +140,3 @@ The FalkorDB Team
 ---
 
 *You're receiving this because you created a new database on FalkorDB Cloud.*
-
----
-
-## Internal Notes (Zendesk agent only)
-- **Trigger condition:** User creates first DB instance on FalkorDB Cloud
-- **Send timing:** Immediately upon first DB creation (automated trigger)
-- **Follow-up:** If no activity in the DB within 7 days, send a check-in ticket
-- **Personalization fields to confirm:** `{First Name}`, instance endpoint auto-fill if possible from console data
