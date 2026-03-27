@@ -2,7 +2,7 @@
 
 Optimize your FalkorDB queries and data operations with proper indexing, efficient query patterns, and smart data loading strategies.
 
-For full indexing documentation, see [docs.falkordb.com/cypher/indexing](https://docs.falkordb.com/cypher/indexing).
+For full indexing documentation, see [docs.falkordb.com/cypher/indexing/](https://docs.falkordb.com/cypher/indexing/).
 
 ---
 
@@ -78,7 +78,7 @@ Best for AI/ML workloads — finding similar items based on embedding vectors.
 ```cypher
 // Create a vector index
 CREATE VECTOR INDEX FOR (d:Document) ON (d.embedding)
-OPTIONS {dimension: 384, similarityFunction: 'cosine'}
+OPTIONS {dim: 384, similarityFunction: 'cosine'}
 
 // Query nearest neighbors
 CALL db.idx.vector.queryNodes('Document', 'embedding', 10, vecf32($queryVector))
@@ -292,6 +292,6 @@ Each index consumes memory. Monitor your instance's memory usage and only mainta
 
 ## Further Reading
 
-- [Indexing Reference](https://docs.falkordb.com/cypher/indexing)
+- [Indexing Reference](https://docs.falkordb.com/cypher/indexing/)
 - [Cypher Query Language](https://docs.falkordb.com/cypher/)
 - [FalkorDB Documentation](https://docs.falkordb.com/)

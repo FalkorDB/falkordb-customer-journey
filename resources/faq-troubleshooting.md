@@ -86,11 +86,22 @@ See the [Indexing & Performance Tips](./indexing-performance-tips.md) guide for 
 
 ### How to load CSV data
 
-FalkorDB supports loading data from CSV files using the `LOAD CSV` clause:
+FalkorDB does not have a built-in `LOAD CSV` command. Instead, parse your CSV client-side and use parameterized `UNWIND` queries for batch inserts:
 
-```cypher
-LOAD CSV WITH HEADERS FROM 'file:///data.csv' AS row
-CREATE (p:Person {name: row.name, age: toInteger(row.age)})
+```python
+import csv
+from falkordb import FalkorDB
+
+db = FalkorDB(host="your-host", port=6379, password="your-password", ssl=True)
+graph = db.select_graph("my_graph")
+
+with open("data.csv") as f:
+    batch = [row for row in csv.DictReader(f)]
+
+graph.query(
+    "UNWIND $batch AS row CREATE (p:Person {name: row.name, age: toInteger(row.age)})",
+    params={"batch": batch}
+)
 ```
 
 ### Bulk import best practices
@@ -241,7 +252,7 @@ There is no hard limit on the number of properties, but keep them reasonable for
 |---------------------------------|----------------------------------------------------|
 | Can't connect                   | Check host, port, password, TLS                    |
 | Slow queries                    | Add indexes, use PROFILE, add LIMIT                |
-| Import CSV data                 | Use LOAD CSV or UNWIND with batch queries          |
+| Import CSV data                 | Parse client-side, use UNWIND with batch queries   |
 | Export data                     | MATCH + RETURN queries with SKIP/LIMIT pagination  |
 | Browser not loading             | Check port 3000, clear cache, try incognito        |
 | Query timed out                 | Optimize query, add indexes, limit path depth      |
