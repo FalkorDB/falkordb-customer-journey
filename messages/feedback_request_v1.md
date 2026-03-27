@@ -12,15 +12,13 @@ Hi {First Name},
 
 You've been using FalkorDB for a couple of weeks now, and we'd love to hear how it's going.
 
-A few quick questions — feel free to answer any or all:
+If you have a minute, we'd appreciate hearing:
 
-- **What's working well** for you so far?
-- **What could be better?** Anything frustrating or confusing?
-- **Is there a feature** you wish FalkorDB had?
+- What's working well for you?
+- Anything that could be better?
+- A feature you wish we had?
 
-Your honest feedback helps us build a better product. No sugarcoating needed — we genuinely want to know.
-
-You can reply directly to this message, join the conversation on **[Discord](https://discord.gg/falkordb)**, or email us at **support@falkordb.com**.
+Even a one-line reply helps us improve. You can respond here, drop by **[Discord](https://discord.gg/falkordb)**, or email **support@falkordb.com**.
 
 Thanks for being part of the FalkorDB community!
 

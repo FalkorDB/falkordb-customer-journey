@@ -4,21 +4,19 @@
 
 ---
 
-## Subject: We miss you at FalkorDB
+## Subject: A quick update from FalkorDB
 
 ---
 
 Hi {First Name},
 
-It's been a while since you've logged into FalkorDB Cloud, and we wanted to check in — no pressure, just making sure everything is okay.
-
-Since you've been away, we've been busy improving things:
+Just a friendly hello from the FalkorDB team. We've been shipping some improvements recently and wanted to make sure you know about them:
 
 - 🚀 Performance improvements and stability updates
 - 📖 Expanded documentation and tutorials
 - 🤖 New GraphRAG SDK capabilities for AI-powered applications
 
-If you hit a blocker or something wasn't working the way you expected, we'd really like to help. Sometimes a quick conversation can make all the difference.
+If you ran into any issues or have questions, we're here to help — no pressure at all.
 
 Here are some resources to jump back in:
 

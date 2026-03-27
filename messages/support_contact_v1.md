@@ -12,9 +12,9 @@ Hi {First Name},
 
 Welcome to FalkorDB! We want to make sure you always know how to get help when you need it. Here are the ways to reach us:
 
-### 1. 🎫 FalkorDB Support Portal
+### 1. 🌐 FalkorDB Cloud Console
 
-Submit and track support requests through **[support.falkordb.com](https://support.falkordb.com)** or the support section in the **[FalkorDB Cloud Console](https://app.falkordb.cloud)**.
+Submit and track support requests through the support section in the **[FalkorDB Cloud Console](https://app.falkordb.cloud)**.
 
 ### 2. 📧 Email
 

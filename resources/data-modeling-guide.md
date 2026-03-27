@@ -261,7 +261,7 @@ CREATE (p:Person)-[:HAS_SKILL]->(s:Skill {name: 'python'})
 
 ## Indexing Strategy
 
-Choose which properties to index based on your query patterns. See [docs.falkordb.com/cypher/indexing](https://docs.falkordb.com/cypher/indexing) for full details.
+Choose which properties to index based on your query patterns. See [docs.falkordb.com/cypher/indexing](https://docs.falkordb.com/cypher/indexing/) for full details.
 
 ### Index Properties You Filter On
 
@@ -293,6 +293,6 @@ CREATE FULLTEXT INDEX FOR (n:Article) ON (n.title, n.body)
 
 ## Further Reading
 
-- [Cypher Indexing Reference](https://docs.falkordb.com/cypher/indexing)
+- [Cypher Indexing Reference](https://docs.falkordb.com/cypher/indexing/)
 - [Cypher Query Language](https://docs.falkordb.com/cypher/)
 - [FalkorDB Documentation](https://docs.falkordb.com/)

@@ -236,7 +236,7 @@ MERGE (a)-[:KNOWS]->(b)
 
 ## Indexes
 
-For detailed indexing docs, see [docs.falkordb.com/cypher/indexing](https://docs.falkordb.com/cypher/indexing).
+For detailed indexing docs, see [docs.falkordb.com/cypher/indexing](https://docs.falkordb.com/cypher/indexing/).
 
 ### Range Index (Property Lookups)
 
@@ -263,7 +263,7 @@ CALL db.idx.fulltext.queryNodes('Article', 'graph database') YIELD node RETURN n
 ```cypher
 // Create a vector index (dimension: 128, similarity: cosine)
 CREATE VECTOR INDEX FOR (n:Document) ON (n.embedding)
-OPTIONS {dimension: 128, similarityFunction: 'cosine'}
+OPTIONS {dim: 128, similarityFunction: 'cosine'}
 
 // Query nearest neighbors
 CALL db.idx.vector.queryNodes('Document', 'embedding', 5, vecf32([0.1, 0.2, ...]))
@@ -338,5 +338,5 @@ MATCH (n:Person) RETURN id(n), n.name
 ## Further Reading
 
 - [Cypher Reference](https://docs.falkordb.com/cypher/)
-- [Indexing Guide](https://docs.falkordb.com/cypher/indexing)
+- [Indexing Guide](https://docs.falkordb.com/cypher/indexing/)
 - [FalkorDB Documentation](https://docs.falkordb.com/)

@@ -4,23 +4,23 @@
 
 ---
 
-## Subject: Ready to scale your FalkorDB instance?
+## Subject: Your FalkorDB usage is growing — here are your options
 
 ---
 
 Hi {First Name},
 
-Great to see your FalkorDB usage growing! You're approaching your current resource limits, and we want to make sure your experience stays smooth.
+Your FalkorDB usage has been growing — that's great to see! We wanted to let you know that you're getting close to your current plan's resource limits.
 
-Upgrading your instance gives you:
+If you'd like more room, upgrading your instance is straightforward:
 
 - 💾 **More memory** — handle larger graphs and more concurrent queries
 - ⚡ **Better performance** — faster query execution and throughput
-- 🛡️ **Dedicated support** — priority assistance from the FalkorDB team
+- 🛡️ **Priority support** — dedicated assistance from the FalkorDB team
 
-Scaling up is simple — you can upgrade directly from the **[FalkorDB Cloud Console](https://app.falkordb.cloud)**.
+You can review your options and upgrade anytime from the **[FalkorDB Cloud Console](https://app.falkordb.cloud)**.
 
-If you'd like guidance on the right plan for your use case, reply to this message or reach out to us at **support@falkordb.com**. We're happy to help you find the best fit.
+Not sure what you need? Reply to this message or reach out at **support@falkordb.com** — we're happy to help you figure out the right fit.
 
 📖 **[FalkorDB Cloud Documentation](https://docs.falkordb.com/cloud)**
 

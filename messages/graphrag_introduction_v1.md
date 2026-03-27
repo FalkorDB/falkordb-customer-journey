@@ -30,10 +30,11 @@ pip install graphrag_sdk
 
 ```python
 from graphrag_sdk import KnowledgeGraph, Ontology
-from graphrag_sdk.models.openai import OpenAiGenerativeModel
+from graphrag_sdk.models.litellm import LiteModel
 
-model = OpenAiGenerativeModel("gpt-4o")
-kg = KnowledgeGraph("my_graph", model)
+model = LiteModel("gpt-4o")
+ontology = Ontology.from_json("ontology.json")
+kg = KnowledgeGraph("my_graph", model, ontology)
 ```
 
 ### Resources

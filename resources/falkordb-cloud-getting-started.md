@@ -1,6 +1,8 @@
 # Getting Started with FalkorDB Cloud
 
-Welcome to FalkorDB Cloud. This guide will take you from a freshly created database to running your first graph queries in minutes.
+Welcome to FalkorDB Cloud. This is a **quick reference** for connecting and running your first queries. For a detailed, hands-on walkthrough (building a movie database step by step), see the companion guide: **[Your First Graph on FalkorDB](your-first-graph-guide.md)**.
+
+This guide will take you from a freshly created database to running your first graph queries in minutes.
 
 ---
 

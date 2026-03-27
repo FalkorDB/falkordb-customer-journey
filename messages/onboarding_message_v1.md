@@ -134,8 +134,7 @@ If you run into any issues or have questions about your setup, reply to this mes
 
 You can also reach us at **support@falkordb.com**.
 
-Best,
-The FalkorDB Team
+— The FalkorDB Team
 
 ---
 
