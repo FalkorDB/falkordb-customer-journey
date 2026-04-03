@@ -35,6 +35,7 @@ Step-by-step guides and reference material organized by learning stage:
 |----------|-------------|
 | [Cypher Cheat Sheet](resources/cypher-cheat-sheet.md) | Quick-reference for Cypher query syntax — nodes, relationships, filtering, aggregation |
 | [Data Modeling Guide](resources/data-modeling-guide.md) | Design effective graph schemas and structure data for performance |
+| [Read & Write Operations](resources/read-write-operations.md) | Primary/replica architecture, `GRAPH.QUERY` vs `GRAPH.RO_QUERY`, with CLI, Python, and Node.js examples |
 | [Parameterized Queries](resources/parameterized-queries.md) | Best practice for safe, cacheable, and clean Cypher queries |
 
 ### Performance & Scale
