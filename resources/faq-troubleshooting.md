@@ -1,5 +1,7 @@
 # FAQ & Troubleshooting — FalkorDB Cloud
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Common questions, issues, and solutions for FalkorDB Cloud users. For full documentation, see [docs.falkordb.com](https://docs.falkordb.com/). Join our community on [Discord](https://discord.gg/falkordb).
 
 ---

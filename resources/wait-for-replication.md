@@ -1,5 +1,7 @@
 # Using WAIT for Write Durability in FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Ensure your writes are replicated to replicas before reading them back. The `WAIT` command bridges the gap between FalkorDB's asynchronous replication and the stronger consistency your application may need.
 
 For background on the primary/replica architecture, see [Read & Write Operations](read-write-operations.md).

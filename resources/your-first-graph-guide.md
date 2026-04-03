@@ -1,5 +1,7 @@
 # Your First Graph on FalkorDB — A Step-by-Step Guide
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 You just created a FalkorDB database. This guide walks you through building a real graph from scratch — creating nodes, adding properties, indexing for performance, and connecting everything with relationships.
 
 We'll build a small **movie database**: actors, movies, and who acted in what.

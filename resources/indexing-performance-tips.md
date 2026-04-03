@@ -1,5 +1,7 @@
 # Indexing & Performance Tips for FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Optimize your FalkorDB queries and data operations with proper indexing, efficient query patterns, and smart data loading strategies.
 
 For full indexing documentation, see [docs.falkordb.com/cypher/indexing/](https://docs.falkordb.com/cypher/indexing/).

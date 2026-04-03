@@ -1,5 +1,7 @@
 # Data Modeling Guide for FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 A practical guide to designing effective graph schemas with FalkorDB. Well-designed data models lead to faster queries, simpler application code, and easier maintenance.
 
 ---

@@ -1,5 +1,7 @@
 # Read & Write Operations in FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Understand how FalkorDB separates read and write workloads, how the primary/replica architecture works, and how to use the right query command from the CLI, Python, and Node.js.
 
 ---

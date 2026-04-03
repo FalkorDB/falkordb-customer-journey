@@ -1,5 +1,7 @@
 # FalkorDB Client Libraries — Quick Start
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Official client libraries for connecting to FalkorDB from your application. Each example shows installation, connection, creating a node, and running a query.
 
 For full documentation, see [docs.falkordb.com/getting-started/clients.html](https://docs.falkordb.com/getting-started/clients.html).

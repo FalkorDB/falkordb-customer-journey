@@ -1,5 +1,7 @@
 # Cypher Cheat Sheet for FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 A quick-reference guide for writing Cypher queries on FalkorDB. For full documentation, see [docs.falkordb.com/cypher/](https://docs.falkordb.com/cypher/).
 
 ---
