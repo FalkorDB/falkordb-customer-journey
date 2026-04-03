@@ -43,6 +43,7 @@ Step-by-step guides and reference material organized by learning stage:
 | Resource | Description |
 |----------|-------------|
 | [Indexing & Performance Tips](resources/indexing-performance-tips.md) | Indexes, query optimization, bulk loading, and memory considerations |
+| [Wait for Replication](resources/wait-for-replication.md) | Use `WAIT` to ensure write durability before reading from replicas |
 | [Use Case Examples](resources/use-case-examples.md) | Real-world graph modeling patterns — social networks, recommendations, and more |
 
 ### Advanced
