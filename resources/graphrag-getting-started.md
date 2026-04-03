@@ -1,5 +1,7 @@
 # Getting Started with FalkorDB GraphRAG SDK
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Build AI-powered question-answering systems using FalkorDB's GraphRAG SDK. This guide walks you through setup, configuration, and your first natural language query over a knowledge graph.
 
 ---

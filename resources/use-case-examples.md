@@ -1,5 +1,7 @@
 # FalkorDB Use Case Examples
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Real-world examples showing how to model and query graph data with FalkorDB. Each use case includes a schema overview, sample data, and practical Cypher queries.
 
 For more information, see [docs.falkordb.com](https://docs.falkordb.com/).

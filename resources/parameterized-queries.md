@@ -1,5 +1,7 @@
 # Parameterized Queries Best Practice for FalkorDB
 
+> **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
+
 Write parameterized Cypher queries to improve plan-cache reuse, avoid query-injection risks, and keep your code clean. For full Cypher documentation, see [docs.falkordb.com/cypher/](https://docs.falkordb.com/cypher/).
 
 ---
