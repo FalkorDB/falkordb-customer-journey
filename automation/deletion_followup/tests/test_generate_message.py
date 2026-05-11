@@ -46,6 +46,15 @@ def test_choose_variant_with_usage_thresholds():
     assert choose_variant(low_usage, db_lifetime_days=2, thresholds=thresholds, forced=None) == "b"
 
 
+def test_slugify_basic_cases():
+    from generate_message import slugify
+    assert slugify("Alex") == "alex"
+    assert slugify("Mary-Jane O'Connor") == "mary-jane-o-connor"
+    assert slugify("  spaces   ") == "spaces"
+    assert slugify("{First Name}") == "first-name"
+    assert slugify("") == "unknown"
+
+
 def test_choose_variant_respects_forced():
     thresholds = {"min_total_queries": 1000, "min_active_days": 7}
     high_usage = GrafanaMetrics(total_queries=50_000)

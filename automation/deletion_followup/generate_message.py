@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import logging
 import mimetypes
+import re
 import sys
 from dataclasses import dataclass
 from datetime import datetime, timezone
@@ -40,6 +41,12 @@ class GrafanaMetrics:
     @property
     def has_screenshot(self) -> bool:
         return any(p.exists() for p in self.screenshot_paths)
+
+
+def slugify(value: str) -> str:
+    """Conservative slug for filenames: lowercase, alnum and dashes only."""
+    cleaned = re.sub(r"[^A-Za-z0-9]+", "-", value).strip("-").lower()
+    return cleaned or "unknown"
 
 
 def parse_iso(ts: str) -> datetime:
@@ -348,7 +355,7 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    out_stem = f"{args.db_name}_{timestamp}"
+    out_stem = f"{slugify(args.first_name)}_{slugify(args.db_name)}_{timestamp}"
 
     metrics = collect_metrics(
         config=config,
