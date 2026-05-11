@@ -1,0 +1,29 @@
+Hi {{ first_name }},
+
+We noticed you deleted **{{ db_name }}** on FalkorDB Cloud {{ when_phrase }}. No worries at all — we just wanted to check in.
+{% if total_queries and db_lifetime_days %}
+Over its {{ db_lifetime_days }} days running, that database handled **{{ total_queries }} queries**{% if peak_qps %} (peaking at {{ peak_qps }} QPS){% endif %}{% if node_count_last and edge_count_last %} and grew to **{{ node_count_last }} nodes / {{ edge_count_last }} edges**{% endif %}. That's real work — so before you go, we'd genuinely love to know what happened.
+{% endif %}
+{% if has_screenshot %}
+![Daily query volume for {{ db_name }}](cid:grafana-screenshot)
+
+*Daily queries over the lifetime of {{ db_name }}. (If you don't see the image, here's the summary: {{ total_queries }} queries across {{ db_lifetime_days }} days{% if peak_qps %}, peak {{ peak_qps }} QPS{% endif %}.)*
+{% endif %}
+A one-line reply to any of these helps us a lot:
+
+- **Project ended** — totally fine, thanks for using us.
+- **Migrated to another DB** — which one, and what tipped the scales?
+- **Hit a limitation** — performance, a missing feature, pricing, ops?
+- **Just testing** — what would have made you keep going?
+
+No follow-up sequence, no sales call — just one human reading the reply.
+
+If you want to spin something new up later, your account is still active and **[the Cloud Console]({{ console_url }})** is one click away. And if you'd like to chat with an engineer (not a CSM) about a specific issue, reply with "engineer" and we'll set it up.
+
+Thanks for giving FalkorDB a shot.
+
+— The FalkorDB Team
+
+---
+
+*You're receiving this because you recently deleted a database on FalkorDB Cloud. You can reply to opt out of future check-ins.*

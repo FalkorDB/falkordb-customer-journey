@@ -70,7 +70,8 @@ Lifecycle messages that engage users at key moments in their journey:
 | **Day 7–10** | [GraphRAG Introduction](messages/graphrag_introduction_v1.md) | Proactive engagement |
 | **Day 14–21** | [Feedback Request](messages/feedback_request_v1.md) | Active user running queries |
 | **Day 30** | [Churn Prevention](messages/churn_prevention_v1.md) | No login for 30 days |
-| **On Event** | [DB Deletion Follow-Up](messages/db_deletion_followup_v1.md) | User deletes an existing Cloud database (two variants: with/without usage) |
+| **On Event** | [DB Deletion Follow-Up — With Usage](messages/db_deletion_followup_with_usage_v1.md) | User deletes a Cloud DB that had ≥ 1,000 queries or ≥ 7 days of activity |
+| **On Event** | [DB Deletion Follow-Up — No Usage](messages/db_deletion_followup_no_usage_v1.md) | User deletes a Cloud DB with little or no activity |
 | **Usage-based** | [Upgrade & Scale Nudge](messages/upgrade_scale_nudge_v1.md) | Nearing resource limits |
 
 ---
