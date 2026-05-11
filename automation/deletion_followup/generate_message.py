@@ -157,22 +157,25 @@ def collect_metrics(
     out_dir: Path,
     out_stem: str,
     dry_run: bool,
+    write_placeholder_image: bool = True,
 ) -> GrafanaMetrics:
     if dry_run:
         logger.info("Dry-run: using sample metrics, skipping Grafana calls.")
-        sample_png = out_dir / f"{out_stem}.png"
-        # Write a 1x1 transparent PNG so the .eml has a valid attachment to inline.
-        sample_png.write_bytes(
-            b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
-            b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\rIDATx\x9cc\xf8\xcf"
-            b"\xc0\xf0\x1f\x00\x05\x00\x01\xff\xa7\xf5j\xb1\x00\x00\x00\x00IEND\xaeB`\x82"
-        )
+        screenshot_paths: list[Path] = []
+        if write_placeholder_image:
+            sample_png = out_dir / f"{out_stem}.png"
+            sample_png.write_bytes(
+                b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01"
+                b"\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\rIDATx\x9cc\xf8\xcf"
+                b"\xc0\xf0\x1f\x00\x05\x00\x01\xff\xa7\xf5j\xb1\x00\x00\x00\x00IEND\xaeB`\x82"
+            )
+            screenshot_paths = [sample_png]
         return GrafanaMetrics(
             total_queries=184_302,
             peak_qps=47.0,
             node_count_last=1_200_000,
             edge_count_last=4_800_000,
-            screenshot_paths=[sample_png],
+            screenshot_paths=screenshot_paths,
         )
 
     gconf = config["grafana"]
@@ -355,6 +358,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         out_dir=args.out_dir,
         out_stem=out_stem,
         dry_run=args.dry_run,
+        write_placeholder_image=not args.screenshot,
     )
 
     if args.screenshot:
