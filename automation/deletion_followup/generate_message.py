@@ -31,11 +31,15 @@ class GrafanaMetrics:
     peak_qps: Optional[float] = None
     node_count_last: Optional[int] = None
     edge_count_last: Optional[int] = None
-    screenshot_path: Optional[Path] = None
+    screenshot_paths: list[Path] = None  # type: ignore[assignment]
+
+    def __post_init__(self) -> None:
+        if self.screenshot_paths is None:
+            self.screenshot_paths = []
 
     @property
     def has_screenshot(self) -> bool:
-        return self.screenshot_path is not None and self.screenshot_path.exists()
+        return any(p.exists() for p in self.screenshot_paths)
 
 
 def parse_iso(ts: str) -> datetime:
@@ -168,7 +172,7 @@ def collect_metrics(
             peak_qps=47.0,
             node_count_last=1_200_000,
             edge_count_last=4_800_000,
-            screenshot_path=sample_png,
+            screenshot_paths=[sample_png],
         )
 
     gconf = config["grafana"]
@@ -218,7 +222,7 @@ def collect_metrics(
         peak_qps=round(results["peak_qps"], 1) if results["peak_qps"] else None,
         node_count_last=int(results["node_count_last"]) if results["node_count_last"] else None,
         edge_count_last=int(results["edge_count_last"]) if results["edge_count_last"] else None,
-        screenshot_path=screenshot_path,
+        screenshot_paths=[screenshot_path] if screenshot_path else [],
     )
 
 
@@ -255,7 +259,7 @@ def build_eml(
     body_markdown: str,
     config: dict[str, Any],
     recipient: Optional[str],
-    screenshot_path: Optional[Path],
+    screenshot_paths: list[Path],
 ) -> bytes:
     msg = EmailMessage()
     msg["Subject"] = subject
@@ -265,25 +269,36 @@ def build_eml(
 
     msg.set_content(body_markdown)
 
-    if screenshot_path and screenshot_path.exists():
-        mime_type, _ = mimetypes.guess_type(str(screenshot_path))
-        maintype, subtype = (mime_type or "image/png").split("/", 1)
-        cid = make_msgid(domain="falkordb.local")
-        cid_value = cid.strip("<>")
-        html_body = (
+    valid_paths = [p for p in screenshot_paths if p.exists()]
+    if valid_paths:
+        html_body = body_markdown
+        cids: list[tuple[str, Path, str]] = []
+        for idx, path in enumerate(valid_paths, start=1):
+            mime_type, _ = mimetypes.guess_type(str(path))
+            maintype, subtype = (mime_type or "image/png").split("/", 1)
+            cid = make_msgid(domain="falkordb.local")
+            cid_value = cid.strip("<>")
+            placeholder = f"cid:grafana-screenshot-{idx}"
+            html_body = html_body.replace(placeholder, f"cid:{cid_value}")
+            cids.append((cid, path, f"{maintype}/{subtype}"))
+
+        html_wrapped = (
             "<html><body><pre style='font-family:inherit;white-space:pre-wrap'>"
-            + body_markdown.replace("cid:grafana-screenshot", f"cid:{cid_value}")
+            + html_body
             + "</pre></body></html>"
         )
-        msg.add_alternative(html_body, subtype="html")
-        with screenshot_path.open("rb") as fh:
-            msg.get_payload()[1].add_related(
-                fh.read(),
-                maintype=maintype,
-                subtype=subtype,
-                cid=cid,
-                filename=screenshot_path.name,
-            )
+        msg.add_alternative(html_wrapped, subtype="html")
+        html_part = msg.get_payload()[1]
+        for cid, path, mime in cids:
+            maintype, subtype = mime.split("/", 1)
+            with path.open("rb") as fh:
+                html_part.add_related(
+                    fh.read(),
+                    maintype=maintype,
+                    subtype=subtype,
+                    cid=cid,
+                    filename=path.name,
+                )
 
     return bytes(msg)
 
@@ -306,10 +321,11 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument(
         "--screenshot",
         type=Path,
+        action="append",
         default=None,
-        help="Path to a local PNG to inline as the Grafana screenshot. "
-             "Overrides the Grafana /render fetch. Useful when you've exported "
-             "the panel manually.",
+        help="Path to a local PNG to inline as a Grafana screenshot. "
+             "Pass multiple times for multiple images (they will be inlined in order). "
+             "Overrides the Grafana /render fetch.",
     )
     parser.add_argument("--dry-run", action="store_true", help="Skip Grafana, use sample data")
     parser.add_argument("--verbose", "-v", action="store_true")
@@ -342,13 +358,17 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
 
     if args.screenshot:
-        if not args.screenshot.exists():
-            logger.error("--screenshot path does not exist: %s", args.screenshot)
-            return 2
-        target = args.out_dir / f"{out_stem}{args.screenshot.suffix}"
-        target.write_bytes(args.screenshot.read_bytes())
-        metrics.screenshot_path = target
-        logger.info("Using local screenshot: %s", args.screenshot)
+        copied: list[Path] = []
+        for idx, src in enumerate(args.screenshot, start=1):
+            if not src.exists():
+                logger.error("--screenshot path does not exist: %s", src)
+                return 2
+            suffix = src.suffix or ".png"
+            target = args.out_dir / f"{out_stem}_{idx}{suffix}"
+            target.write_bytes(src.read_bytes())
+            copied.append(target)
+            logger.info("Using local screenshot %d: %s", idx, src)
+        metrics.screenshot_paths = copied
 
     db_lifetime_days = max(int((deleted_at - created_at).total_seconds() / 86400), 1)
     variant = choose_variant(
@@ -369,6 +389,7 @@ def main(argv: Optional[list[str]] = None) -> int:
         "node_count_last": format_number(metrics.node_count_last),
         "edge_count_last": format_number(metrics.edge_count_last),
         "has_screenshot": variant == "a" and metrics.has_screenshot,
+        "screenshot_count": len(metrics.screenshot_paths) if variant == "a" else 0,
         "console_url": config["console_url"],
         "first_graph_guide_url": config["first_graph_guide_url"],
     }
@@ -389,14 +410,14 @@ def main(argv: Optional[list[str]] = None) -> int:
         body_markdown=body,
         config=config,
         recipient=args.recipient,
-        screenshot_path=metrics.screenshot_path if variant == "a" else None,
+        screenshot_paths=metrics.screenshot_paths if variant == "a" else [],
     )
     eml_path.write_bytes(eml_bytes)
 
     print(f"Wrote: {md_path}")
     print(f"Wrote: {eml_path}")
-    if metrics.screenshot_path:
-        print(f"Wrote: {metrics.screenshot_path}")
+    for p in metrics.screenshot_paths:
+        print(f"Wrote: {p}")
     return 0
 
 

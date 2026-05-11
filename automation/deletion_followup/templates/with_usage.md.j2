@@ -5,9 +5,10 @@ We noticed you deleted **{{ db_name }}** on FalkorDB Cloud {{ when_phrase }}. No
 Over its {{ db_lifetime_days }} days running, that database handled **{{ total_queries }} queries**{% if peak_qps %} (peaking at {{ peak_qps }} QPS){% endif %}{% if node_count_last and edge_count_last %} and grew to **{{ node_count_last }} nodes / {{ edge_count_last }} edges**{% endif %}. That's real work — so before you go, we'd genuinely love to know what happened.
 {% endif %}
 {% if has_screenshot %}
-![Daily query volume for {{ db_name }}](cid:grafana-screenshot)
-
-*Daily queries over the lifetime of {{ db_name }}. (If you don't see the image, here's the summary: {{ total_queries }} queries across {{ db_lifetime_days }} days{% if peak_qps %}, peak {{ peak_qps }} QPS{% endif %}.)*
+{% for i in range(1, screenshot_count + 1) %}
+![Activity for {{ db_name }} (view {{ i }})](cid:grafana-screenshot-{{ i }})
+{% endfor %}
+*Different views of the same panel for {{ db_name }}. (If you don't see the images, here's the summary: {{ total_queries }} queries across {{ db_lifetime_days }} days{% if peak_qps %}, peak {{ peak_qps }} QPS{% endif %}.)*
 {% endif %}
 A one-line reply to any of these helps us a lot:
 
