@@ -303,6 +303,14 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--recipient", default=None, help="Recipient email for the .eml")
     parser.add_argument("--out-dir", type=Path, default=Path("./out"))
     parser.add_argument("--variant", choices=["a", "b"], default=None, help="Force variant for testing")
+    parser.add_argument(
+        "--screenshot",
+        type=Path,
+        default=None,
+        help="Path to a local PNG to inline as the Grafana screenshot. "
+             "Overrides the Grafana /render fetch. Useful when you've exported "
+             "the panel manually.",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Skip Grafana, use sample data")
     parser.add_argument("--verbose", "-v", action="store_true")
     args = parser.parse_args(argv)
@@ -332,6 +340,15 @@ def main(argv: Optional[list[str]] = None) -> int:
         out_stem=out_stem,
         dry_run=args.dry_run,
     )
+
+    if args.screenshot:
+        if not args.screenshot.exists():
+            logger.error("--screenshot path does not exist: %s", args.screenshot)
+            return 2
+        target = args.out_dir / f"{out_stem}{args.screenshot.suffix}"
+        target.write_bytes(args.screenshot.read_bytes())
+        metrics.screenshot_path = target
+        logger.info("Using local screenshot: %s", args.screenshot)
 
     db_lifetime_days = max(int((deleted_at - created_at).total_seconds() / 86400), 1)
     variant = choose_variant(

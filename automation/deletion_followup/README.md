@@ -46,6 +46,45 @@ python generate_message.py \
   --out-dir ./out
 ```
 
+## Where to put the Grafana screenshot
+
+**Keep the screenshot outside this repo.** Production dashboard images can
+leak instance names, customer identifiers, and traffic patterns — they should
+never be at risk of being committed.
+
+Recommended location: a folder in your home directory, e.g.
+
+```bash
+mkdir -p ~/falkordb-screenshots
+```
+
+You have three options for the image, in order of recommended workflow:
+
+1. **Export the PNG manually and pass `--screenshot`** *(recommended for the first runs)*
+   ```bash
+   # 1. In Grafana, open the panel → Share → Direct link rendered image,
+   #    OR Panel menu → Inspect → Panel JSON → screenshot.
+   # 2. Save the PNG anywhere outside this repo, e.g.:
+   #      ~/falkordb-screenshots/prod-graph-01.png
+   # 3. Run with --screenshot pointing at the absolute path:
+   python generate_message.py --config config.yaml \
+     --db-name prod-graph-01 --first-name Alex \
+     --created-at 2026-03-15T09:00:00Z --deleted-at 2026-05-10T17:42:00Z \
+     --screenshot ~/falkordb-screenshots/prod-graph-01.png \
+     --out-dir ./out
+   ```
+   The file is copied into `out/<db_name>_<timestamp>.png` (which is gitignored)
+   and CID-inlined in the `.eml`. The original stays where you put it.
+
+2. **Let the script fetch it from Grafana's `/render` API** — requires the
+   [Grafana Image Renderer plugin](https://grafana.com/grafana/plugins/grafana-image-renderer/)
+   installed on your Grafana server. No CLI flag needed; it happens automatically
+   if `--screenshot` is omitted and `--dry-run` is not set.
+
+3. **Skip the image entirely** — pass neither `--screenshot` nor real Grafana
+   credentials. The template falls back to the numeric summary line only
+   (no broken image icon).
+
 Outputs:
 
 - `out/<db_name>_<timestamp>.md` — rendered Markdown for review.
