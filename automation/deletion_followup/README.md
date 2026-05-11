@@ -34,6 +34,49 @@ cp config.example.yaml config.yaml   # then edit
 
 `config.yaml` is gitignored — it holds your Grafana token. Never commit it.
 
+## Architecture: this repo owns templates + glue, never customer data
+
+The customer-journey repo intentionally contains:
+
+- **Messages** (`messages/*.md`) — versioned templates with merge tokens.
+- **Automation glue** (`automation/<name>/`) — Python that fills a template
+  with real context from external sources and emits a reviewable artifact.
+- **Resources** (`resources/*.md`) — public-facing guides.
+
+It must **never** contain:
+
+- Customer names, emails, internal instance IDs.
+- Production dashboard screenshots.
+- Auth tokens, API keys, or any `.env` content.
+
+Real data lives in **other repos / pipelines** (e.g. `hubspot-utils/`,
+Grafana, Omnistrate). The automation here references those by configurable
+file paths or URLs in `config.yaml` (per-machine, gitignored). The
+`config.example.yaml` checked into git uses obviously-placeholder paths
+(`/path/to/external/...`) so cloning the repo doesn't reveal anyone's
+machine layout.
+
+### Pattern for future automation modules
+
+When adding a new automation under `automation/<name>/`:
+
+1. **Template** (`templates/*.md.j2`) — pure Jinja, no hardcoded names.
+2. **Generator** (`<verb>_<noun>.py`) — argparse CLI, reads `config.yaml`,
+   accepts an opaque identifier (e.g. `--instance-id`, `--ticket-id`), and
+   resolves it against an external source (snapshot JSON, live API, etc.).
+3. **Config** — `config.example.yaml` with placeholder paths; real
+   `config.yaml` gitignored.
+4. **Output** — write to a user-supplied `--out-dir` (default outside repo).
+   Never default to a path inside this repo.
+5. **Tests** — unit tests for parsing, slug/format helpers, and variant
+   selection logic. Don't test live API calls in CI.
+
+This keeps the repo safe to share publicly while still letting a teammate
+clone it and (after pointing `config.yaml` at their own data sources)
+regenerate everything locally.
+
+---
+
 ## Run
 
 ```bash
