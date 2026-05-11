@@ -25,3 +25,9 @@ email:
 
 console_url: "https://app.falkordb.cloud"
 first_graph_guide_url: "https://docs.falkordb.com/getting-started/"
+
+# Path to the Omnistrate instances snapshot produced by
+# ~/Documents/work/hubspot-utils/export_omnistrate_instances.py.
+# Used by --instance-id to resolve owner_email / owner_name without a live API call.
+instance_snapshot_path: "~/Documents/work/hubspot-utils/omnistrate_instances.json"
+

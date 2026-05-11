@@ -6,6 +6,7 @@ directory for the full overview.
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import mimetypes
 import re
@@ -24,6 +25,56 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 logger = logging.getLogger("deletion_followup")
 
 TEMPLATES_DIR = Path(__file__).parent / "templates"
+
+
+@dataclass
+class InstanceOwner:
+    instance_id: str
+    db_name: Optional[str]
+    owner_email: Optional[str]
+    owner_name: Optional[str]
+    instance_start_date: Optional[str]
+    instance_status: Optional[str]
+
+
+def resolve_instance_owner(snapshot_path: Path, instance_id: str) -> InstanceOwner:
+    """Look up an instance in the local Omnistrate snapshot.
+
+    Snapshot is produced by ~/Documents/work/hubspot-utils/export_omnistrate_instances.py.
+    Raises FileNotFoundError if the snapshot is missing, KeyError if the id isn't there.
+    """
+    if not snapshot_path.exists():
+        raise FileNotFoundError(
+            f"Instance snapshot not found at {snapshot_path}. "
+            "Run ~/Documents/work/hubspot-utils/export_omnistrate_instances.py "
+            "to generate it, or set instance_snapshot_path in config.yaml."
+        )
+    data = json.loads(snapshot_path.read_text())
+    instances = data.get("instances") if isinstance(data, dict) else data
+    if not isinstance(instances, list):
+        raise ValueError(f"Unexpected snapshot shape in {snapshot_path}")
+    for inst in instances:
+        if inst.get("instance_name") == instance_id or inst.get("subscription_id") == instance_id:
+            return InstanceOwner(
+                instance_id=instance_id,
+                db_name=inst.get("db_name"),
+                owner_email=inst.get("owner_email"),
+                owner_name=inst.get("owner_name"),
+                instance_start_date=inst.get("instance_start_date"),
+                instance_status=inst.get("instance_status"),
+            )
+    raise KeyError(
+        f"instance_id={instance_id!r} not found in snapshot {snapshot_path}. "
+        "If the instance was created recently, refresh the snapshot."
+    )
+
+
+def first_name_from_owner_name(owner_name: Optional[str]) -> str:
+    """Extract the first token from a free-form owner name. Falls back to 'there'."""
+    if not owner_name:
+        return "there"
+    parts = owner_name.strip().split()
+    return parts[0] if parts else "there"
 
 
 @dataclass
@@ -50,6 +101,11 @@ def slugify(value: str) -> str:
 
 
 def parse_iso(ts: str) -> datetime:
+    # Accept epoch milliseconds (Omnistrate snapshot format).
+    if isinstance(ts, str) and ts.isdigit():
+        return datetime.fromtimestamp(int(ts) / 1000.0, tz=timezone.utc)
+    if isinstance(ts, (int, float)):
+        return datetime.fromtimestamp(float(ts) / 1000.0, tz=timezone.utc)
     if ts.endswith("Z"):
         ts = ts[:-1] + "+00:00"
     return datetime.fromisoformat(ts).astimezone(timezone.utc)
@@ -321,10 +377,16 @@ def load_config(path: Path) -> dict[str, Any]:
 def main(argv: Optional[list[str]] = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--db-name", required=True)
-    parser.add_argument("--first-name", required=True)
-    parser.add_argument("--created-at", required=True, help="ISO 8601, e.g. 2026-03-15T09:00:00Z")
-    parser.add_argument("--deleted-at", required=True, help="ISO 8601")
+    parser.add_argument(
+        "--instance-id",
+        default=None,
+        help="Omnistrate instance id (e.g. instance-r2hgbez8z). "
+             "Auto-fills --first-name, --recipient, --db-name from the snapshot.",
+    )
+    parser.add_argument("--db-name", default=None)
+    parser.add_argument("--first-name", default=None)
+    parser.add_argument("--created-at", default=None, help="ISO 8601; defaults to instance_start_date")
+    parser.add_argument("--deleted-at", default=None, help="ISO 8601; defaults to now")
     parser.add_argument("--recipient", default=None, help="Recipient email for the .eml")
     parser.add_argument("--out-dir", type=Path, default=Path("./out"))
     parser.add_argument("--variant", choices=["a", "b"], default=None, help="Force variant for testing")
@@ -347,6 +409,38 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
 
     config = load_config(args.config)
+
+    if args.instance_id:
+        snapshot_path = Path(config.get("instance_snapshot_path", "")).expanduser()
+        try:
+            owner = resolve_instance_owner(snapshot_path, args.instance_id)
+        except (FileNotFoundError, KeyError, ValueError) as exc:
+            logger.error("Instance lookup failed: %s", exc)
+            return 2
+        logger.info(
+            "Resolved %s -> %s <%s> (db_name=%s, status=%s)",
+            args.instance_id, owner.owner_name, owner.owner_email,
+            owner.db_name, owner.instance_status,
+        )
+        if not args.first_name:
+            args.first_name = first_name_from_owner_name(owner.owner_name)
+        if not args.recipient:
+            args.recipient = owner.owner_email
+        if not args.db_name:
+            args.db_name = owner.db_name or args.instance_id
+        if not args.created_at and owner.instance_start_date:
+            args.created_at = owner.instance_start_date
+
+    if not args.deleted_at:
+        args.deleted_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    missing = [name for name, val in
+               (("--db-name", args.db_name), ("--first-name", args.first_name),
+                ("--created-at", args.created_at)) if not val]
+    if missing:
+        parser.error(f"missing required values: {', '.join(missing)} "
+                     "(supply directly or use --instance-id)")
+
     created_at = parse_iso(args.created_at)
     deleted_at = parse_iso(args.deleted_at)
     if deleted_at < created_at:
