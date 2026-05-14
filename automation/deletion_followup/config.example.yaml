@@ -1,0 +1,40 @@
+grafana:
+  base_url: "https://grafana.example.com"
+  api_token: "REPLACE_WITH_GRAFANA_SERVICE_ACCOUNT_TOKEN"
+  datasource_uid: "prometheus-main"
+  dashboard_uid: "falkordb-cloud-db"
+  panel_id: 4
+  render_width: 1000
+  render_height: 400
+  request_timeout_seconds: 30
+
+prometheus_metrics:
+  queries_total: "falkordb_queries_total"
+  nodes: "falkordb_graph_nodes"
+  edges: "falkordb_graph_edges"
+  db_label: "db"
+
+variant_thresholds:
+  min_total_queries: 1000
+  min_active_days: 7
+
+email:
+  from_address: "founders@falkordb.com"
+  from_name: "FalkorDB Team"
+  reply_to: "founders@falkordb.com"
+
+console_url: "https://app.falkordb.cloud"
+first_graph_guide_url: "https://docs.falkordb.com/getting-started/"
+
+# ----------------------------------------------------------------------------
+# External data sources
+# ----------------------------------------------------------------------------
+# This repo intentionally contains NO customer/operational data. Real context
+# (owner names, emails, instance metadata) is pulled at runtime from files
+# produced by OTHER repos / pipelines (e.g. the hubspot-utils project).
+#
+# Set the path below to wherever your local snapshot lives. The file itself
+# is never read into git; only this path string is configurable here.
+# Override on a per-machine basis in config.yaml (gitignored).
+instance_snapshot_path: "/path/to/external/omnistrate_instances.json"
+

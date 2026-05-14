@@ -1,0 +1,5 @@
+automation/deletion_followup/config.yaml
+automation/deletion_followup/out/
+automation/deletion_followup/.venv/
+__pycache__/
+*.pyc
