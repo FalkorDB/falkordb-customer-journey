@@ -98,7 +98,7 @@ never be at risk of being committed.
 Recommended location: a folder in your home directory, e.g.
 
 ```bash
-mkdir -p ~/falkordb-screenshots
+mkdir -p ~/Documents/work/scratch/deletion-followup
 ```
 
 You have three options for the image, in order of recommended workflow:
@@ -108,12 +108,12 @@ You have three options for the image, in order of recommended workflow:
    # 1. In Grafana, open the panel → Share → Direct link rendered image,
    #    OR Panel menu → Inspect → Panel JSON → screenshot.
    # 2. Save the PNG anywhere outside this repo, e.g.:
-   #      ~/falkordb-screenshots/prod-graph-01.png
+   #      ~/Documents/work/scratch/deletion-followup/prod-graph-01.png
    # 3. Run with --screenshot pointing at the absolute path:
    python generate_message.py --config config.yaml \
      --db-name prod-graph-01 --first-name Alex \
      --created-at 2026-03-15T09:00:00Z --deleted-at 2026-05-10T17:42:00Z \
-     --screenshot ~/falkordb-screenshots/prod-graph-01.png \
+     --screenshot ~/Documents/work/scratch/deletion-followup/prod-graph-01.png \
      --out-dir ./out
    ```
    The file is copied into `out/<db_name>_<timestamp>.png` (which is gitignored)
