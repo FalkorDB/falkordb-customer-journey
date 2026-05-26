@@ -1,0 +1,33 @@
+grafana:
+  base_url: "https://grafana.example.com"
+  api_token: "REPLACE_WITH_GRAFANA_SERVICE_ACCOUNT_TOKEN"
+  datasource_uid: "prometheus-main"
+  dashboard_uid: "falkordb-cloud-db"
+  panel_id: 4
+  render_width: 1000
+  render_height: 400
+  request_timeout_seconds: 30
+
+prometheus_metrics:
+  queries_total: "falkordb_queries_total"
+  nodes: "falkordb_graph_nodes"
+  edges: "falkordb_graph_edges"
+  db_label: "db"
+
+variant_thresholds:
+  min_total_queries: 1000
+  min_active_days: 7
+
+email:
+  from_address: "founders@falkordb.com"
+  from_name: "FalkorDB Team"
+  reply_to: "founders@falkordb.com"
+
+console_url: "https://app.falkordb.cloud"
+first_graph_guide_url: "https://docs.falkordb.com/getting-started/"
+
+# Path to the Omnistrate instances snapshot produced by
+# ~/Documents/work/hubspot-utils/export_omnistrate_instances.py.
+# Used by --instance-id to resolve owner_email / owner_name without a live API call.
+instance_snapshot_path: "~/Documents/work/hubspot-utils/omnistrate_instances.json"
+
