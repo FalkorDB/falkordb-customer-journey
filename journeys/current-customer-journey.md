@@ -14,7 +14,7 @@ This file documents the current HubSpot registration / pending-registration sequ
 
 | Step | Timing | HubSpot action | Audience / label | A/B test | Version | Status |
 |---|---|---|---|---|---|---|
-| 1 | Day 1 | Automated Email | Registrants - First email | Yes | A | Documented |
+| 1 | Day 1 | Automated Email | Registrants - First email | No active B version | A only | Documented |
 
 ---
 
@@ -22,9 +22,9 @@ This file documents the current HubSpot registration / pending-registration sequ
 
 **HubSpot label:** Registrants - First email
 
-**A/B test:** Yes
+**A/B test:** no active Version B. HubSpot may have shown the option to add an A/B test, but only Version A exists today.
 
-**Version documented:** Version A
+**Version documented:** Version A (only existing version)
 
 **Subject:** Welcome to FalkorDB! Let's Get You Started
 
@@ -56,7 +56,6 @@ The FalkorDB Team
 
 ## Notes / gaps to capture
 
-- Version B of the A/B test is not documented yet.
 - The exact HubSpot personalization token for the greeting should be confirmed.
 - The "30 min meeting" link / CTA target should be captured if it exists in HubSpot.
 - Remaining sequence steps after Day 1 still need to be documented.

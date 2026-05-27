@@ -44,7 +44,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 | 2+ | TBD | Remaining HubSpot sequence steps to document | [HubSpot registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2) |
 
 **Observations / gaps:**
-- Only Day 1 / Version A is documented so far; Version B and the remaining HubSpot sequence steps still need to be captured.
+- Only Day 1 is documented so far; the remaining HubSpot sequence steps still need to be captured.
 - No distinction between Free vs Paid — everyone receives the same sequence today.
 - No explicit post-registration branching based on product activation, database creation, first query, or upgrade.
 - Resources under `resources/*.md` exist but are not yet tied to specific HubSpot journey steps.
