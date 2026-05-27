@@ -15,6 +15,7 @@ This file documents the current HubSpot registration / pending-registration sequ
 | Step | Timing | HubSpot action | Audience / label | A/B test | Version | Status |
 |---|---|---|---|---|---|---|
 | 1 | Day 1 | Automated Email | Registrants - First email | No active B version | A only | Documented |
+| 2 | Day 3 if no reply | Automated Email | Registrants - second email | No active B version | A only | Documented |
 
 ---
 
@@ -49,6 +50,38 @@ If you have any questions, feel free to reach out by replying to this email or u
 We are interested to learn more about your use case. Will be glad to chat: 30 min meeting.
 
 Thanks,
+
+The FalkorDB Team
+
+---
+
+## Step 2 — Automated Email - Day 3
+
+**Send condition:** if no reply after the Day 1 email.
+
+**HubSpot label:** Registrants - second email
+
+**Threading:** new thread.
+
+**A/B test:** no active Version B. HubSpot may have shown the option to add an A/B test, but only Version A exists today.
+
+**Version documented:** Version A (only existing version)
+
+**Subject:** Discover FalkorDB's Powerful Features
+
+### Email body
+
+Hi {First Name},
+
+We hope you've started exploring FalkorDB. Here are some powerful features that can help you get the most out of our platform:
+
+1. **Graph Algorithms:** Leverage graph algorithms to uncover insights in your data.
+2. **Cypher Query Language:** Use Cypher, the powerful query language, to manipulate and analyze your data with ease.
+3. **Visual Data Representation:** Visualize your data with our visualization tool for better understanding and communication.
+
+Have questions? Let's schedule a call to discuss: 30 min meeting.
+
+Regards,
 
 The FalkorDB Team
 
