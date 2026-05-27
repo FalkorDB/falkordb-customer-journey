@@ -13,7 +13,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | # | Journey | One-line description | Status | Detailed map |
 |---|---|---|---|---|
-| 1 | **Current Customer Journey (As-Is)** | The journey contacts go through today in HubSpot when they are registered / pending registration. Single track, no plan-based branching. Baseline for everything else. | 🟢 Active | [§2](#2-current-customer-journey-as-is--summary) |
+| 1 | **Current Customer Journey (As-Is)** | The journey contacts go through today in HubSpot when they are registered / pending registration. Single track, no plan-based branching. Baseline for everything else. | 🟢 Active | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
 | 2 | **All-User Journey (Common Core)** | The shared backbone every user sees regardless of plan — signup → first DB → first query → onboarding education → deletion follow-up. The trunk that the Free and Paid journeys branch off. | ⚪ Planned | _TBD_ |
 | 3 | **Free User Journey** | Free-tier active path: activation, education, nudges toward a real workload, upgrade triggers when bumping into Free limits, re-engagement when going cold. | ⚪ Planned | _TBD_ |
 | 4 | **Paid User Journey** | Paid-tier active path: production readiness (replication, indexing, backups), expansion (more DBs, larger tiers, GraphRAG), health check-ins, renewal & retention, downgrade-risk handling. | ⚪ Planned | _TBD_ |
@@ -40,23 +40,14 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | Step | When | Touchpoint | Source |
 |---|---|---|---|
-| 1 | Day 0 — on DB creation | Welcome + Onboarding | `messages/welcome_message_v1.md`, `messages/onboarding_message_v1.md` |
-| 2 | Day 1–2 | Support handoff | `messages/support_contact_v1.md` |
-| 3 | Day 3–5 | Tips & best practices | `messages/tips_best_practices_v1.md` |
-| 4 | Event — first query | First-query celebration | `messages/first_query_celebration_v1.md` |
-| 5 | Day 7+ (no activity) | Inactivity check-in | `messages/inactivity_checkin_v1.md` |
-| 6 | Day 7–10 | GraphRAG introduction | `messages/graphrag_introduction_v1.md` |
-| 7 | Day 14–21 (active users) | Feedback request | `messages/feedback_request_v1.md` |
-| 8 | Day 30 (no login) | Churn prevention | `messages/churn_prevention_v1.md` |
-| 9 | Event — DB deletion | Deletion follow-up (used / unused variants) | `messages/db_deletion_followup_v1.md`, `automation/deletion_followup/` |
-| 10 | Usage-based — nearing limits | Upgrade / scale nudge | `messages/upgrade_scale_nudge_v1.md` |
+| 1 | Day 1 | Automated email — Registrants first email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
+| 2+ | TBD | Remaining HubSpot sequence steps to document | [HubSpot registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2) |
 
 **Observations / gaps:**
+- Only Day 1 / Version A is documented so far; Version B and the remaining HubSpot sequence steps still need to be captured.
 - No distinction between Free vs Paid — everyone receives the same sequence today.
-- No explicit pre-signup / acquisition step.
-- No "you just became paid" / post-upgrade moment.
-- No renewal / expansion / win-back loop for paid users.
-- Resources under `resources/*.md` exist but are not yet tied to specific journey steps.
+- No explicit post-registration branching based on product activation, database creation, first query, or upgrade.
+- Resources under `resources/*.md` exist but are not yet tied to specific HubSpot journey steps.
 
 ---
 
