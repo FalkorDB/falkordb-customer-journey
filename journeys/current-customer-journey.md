@@ -17,6 +17,7 @@ This file documents the current HubSpot registration / pending-registration sequ
 | 1 | Day 1 | Automated Email | Registrants - First email | No active B version | A only | Documented |
 | 2 | Day 3 if no reply | Automated Email | Registrants - second email | No active B version | A only | Documented |
 | 3 | Day 6 if no reply | Automated Email | Registrants - Third email | No active B version | A only | Documented |
+| 4 | Day 9 if no reply | Automated Email | Registrants - fourth email | No active B version | A only | Documented |
 
 ---
 
@@ -126,8 +127,34 @@ The FalkorDB Team
 
 ---
 
+## Step 4 — Automated Email - Day 9
+
+**Send condition:** if no reply after the Day 6 email; sent after another 3 business days.
+
+**HubSpot label:** Registrants - fourth email.
+
+**Threading:** new thread.
+
+**A/B test:** no active Version B. HubSpot may have shown the option to add an A/B test, but only Version A exists today.
+
+**Version documented:** Version A (only existing version)
+
+**Subject:** Have you given up on FalkorDB???
+
+### Email body
+
+{First Name},
+
+Last try :) Will be glad to discuss how we can be of benefit to your team.
+
+Regards,
+
+The FalkorDB Team
+
+---
+
 ## Notes / gaps to capture
 
 - The exact HubSpot personalization token for the greeting should be confirmed.
 - The "30 min meeting" link / CTA target should be captured if it exists in HubSpot.
-- Remaining sequence steps after Day 6 still need to be documented.
+- Remaining sequence steps after Day 9 still need to be documented.
