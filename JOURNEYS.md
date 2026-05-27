@@ -13,7 +13,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | # | Journey | One-line description | Status | Detailed map |
 |---|---|---|---|---|
-| 1 | **Current Customer Journey (As-Is)** | The journey users go through today — exactly what is wired up in `messages/` and `automation/`. Single track, no plan-based branching. Baseline for everything else. | 🟡 In design | _TBD_ |
+| 1 | **Current Customer Journey (As-Is)** | The journey contacts go through today in HubSpot when they are registered / pending registration. Single track, no plan-based branching. Baseline for everything else. | 🟢 Active | [§2](#2-current-customer-journey-as-is--summary) |
 | 2 | **All-User Journey (Common Core)** | The shared backbone every user sees regardless of plan — signup → first DB → first query → onboarding education → deletion follow-up. The trunk that the Free and Paid journeys branch off. | ⚪ Planned | _TBD_ |
 | 3 | **Free User Journey** | Free-tier active path: activation, education, nudges toward a real workload, upgrade triggers when bumping into Free limits, re-engagement when going cold. | ⚪ Planned | _TBD_ |
 | 4 | **Paid User Journey** | Paid-tier active path: production readiness (replication, indexing, backups), expansion (more DBs, larger tiers, GraphRAG), health check-ins, renewal & retention, downgrade-risk handling. | ⚪ Planned | _TBD_ |
@@ -32,7 +32,11 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 ## 2. Current Customer Journey (As-Is) — summary
 
-**Trigger:** user creates their first FalkorDB Cloud database.
+**Current source of truth:** HubSpot sequence — [registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2).
+
+**Trigger:** contact is registered in HubSpot and enters the registration / pending-registration flow.
+
+**Audience:** every HubSpot contact that matches the registration flow criteria.
 
 | Step | When | Touchpoint | Source |
 |---|---|---|---|
