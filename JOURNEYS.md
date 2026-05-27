@@ -42,10 +42,11 @@ Each journey is summarized here at a high level; detailed maps live in their own
 |---|---|---|---|
 | 1 | Day 1 | Automated email — Registrants first email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
 | 2 | Day 3 if no reply | Automated email — Registrants second email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
-| 3+ | TBD | Remaining HubSpot sequence steps to document | [HubSpot registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2) |
+| 3 | Day 6 if no reply | Automated email — Registrants third email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
+| 4+ | TBD | Remaining HubSpot sequence steps to document | [HubSpot registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2) |
 
 **Observations / gaps:**
-- Day 1 and Day 3 are documented so far; the remaining HubSpot sequence steps still need to be captured.
+- Day 1, Day 3, and Day 6 are documented so far; the remaining HubSpot sequence steps still need to be captured.
 - No distinction between Free vs Paid — everyone receives the same sequence today.
 - No explicit post-registration branching based on product activation, database creation, first query, or upgrade.
 - Resources under `resources/*.md` exist but are not yet tied to specific HubSpot journey steps.

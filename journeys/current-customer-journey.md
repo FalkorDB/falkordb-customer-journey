@@ -16,6 +16,7 @@ This file documents the current HubSpot registration / pending-registration sequ
 |---|---|---|---|---|---|---|
 | 1 | Day 1 | Automated Email | Registrants - First email | No active B version | A only | Documented |
 | 2 | Day 3 if no reply | Automated Email | Registrants - second email | No active B version | A only | Documented |
+| 3 | Day 6 if no reply | Automated Email | Registrants - Third email | No active B version | A only | Documented |
 
 ---
 
@@ -87,8 +88,46 @@ The FalkorDB Team
 
 ---
 
+## Step 3 — Automated Email - Day 6
+
+**Send condition:** if no reply after the Day 3 email; sent after another 3 business days.
+
+**HubSpot label:** Registrants - Third email
+
+**Threading:** new thread.
+
+**A/B test:** no active Version B. HubSpot may have shown the option to add an A/B test, but only Version A exists today.
+
+**Version documented:** Version A (only existing version)
+
+**Subject:** FalkorDB is perfect to improve your RAG!
+
+**Current HubSpot performance:**
+
+| Sends | Opens | Clicks | Replies | Meetings |
+|---:|---:|---:|---:|---:|
+| 3,667 | 38% | 4% | 0% | 1% |
+
+### Email body
+
+Hi {First Name},
+
+We hope you're finding FalkorDB valuable for your data management and analysis needs. Today, we want to introduce you to a powerful use case: Graph RAG.
+
+1. **Graph RAG:** The ultra-low latency functionality of FalkorDB makes it a perfect infrastructure for building a knowledge graph for RAG applications.
+2. **Built-in Multi-Tenancy:** FalkorDB provides the out-of-the-box multi-tenant capabilities to support personal assistant / chatbot use cases.
+3. **Multi-Agent Workflows:** Multi-agent workflows can be created with the help of the GraphRAG SDK that you can use to ingest data and orchestrate the entire multi-agent flow.
+
+Tell us more about your use case and we will be happy to assist: 30 min meeting.
+
+Regards,
+
+The FalkorDB Team
+
+---
+
 ## Notes / gaps to capture
 
 - The exact HubSpot personalization token for the greeting should be confirmed.
 - The "30 min meeting" link / CTA target should be captured if it exists in HubSpot.
-- Remaining sequence steps after Day 1 still need to be documented.
+- Remaining sequence steps after Day 6 still need to be documented.
