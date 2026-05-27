@@ -13,7 +13,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | # | Journey | One-line description | Status | Detailed map |
 |---|---|---|---|---|
-| 1 | **Current Customer Journey (As-Is)** | The journey contacts go through today in HubSpot when they are registered / pending registration. Single track, no plan-based branching. Baseline for everything else. | 🟢 Active | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
+| 1 | **Current All-Contact Education Flow (As-Is)** | The generic HubSpot education flow sent to all registered / pending-registration contacts before we know whether they have a database. | 🟢 Active | [`journeys/generic-contact-education-flow.md`](journeys/generic-contact-education-flow.md) |
 | 2 | **All-User Journey (Common Core)** | The shared backbone every user sees regardless of plan — signup → first DB → first query → onboarding education → deletion follow-up. The trunk that the Free and Paid journeys branch off. | ⚪ Planned | _TBD_ |
 | 3 | **Free User Journey** | Free-tier active path: activation, education, nudges toward a real workload, upgrade triggers when bumping into Free limits, re-engagement when going cold. | ⚪ Planned | _TBD_ |
 | 4 | **Paid User Journey** | Paid-tier active path: production readiness (replication, indexing, backups), expansion (more DBs, larger tiers, GraphRAG), health check-ins, renewal & retention, downgrade-risk handling. | ⚪ Planned | _TBD_ |
@@ -30,27 +30,30 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 ---
 
-## 2. Current Customer Journey (As-Is) — summary
+## 2. Current All-Contact Education Flow (As-Is) — summary
 
 **Current source of truth:** HubSpot sequence — [registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2).
 
 **Trigger:** contact is registered in HubSpot and enters the registration / pending-registration flow.
 
-**Audience:** every HubSpot contact that matches the registration flow criteria.
+**Audience:** every HubSpot contact that matches the registration flow criteria. At this stage, we do **not** know whether the contact has created a FalkorDB database.
+
+**Purpose:** generic CS-led education, not a database-activation journey.
 
 | Step | When | Touchpoint | Source |
 |---|---|---|---|
-| 1 | Day 1 | Automated email — Registrants first email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
-| 2 | Day 3 if no reply | Automated email — Registrants second email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
-| 3 | Day 6 if no reply | Automated email — Registrants third email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
-| 4 | Day 9 if no reply | Automated email — Registrants fourth email | [`journeys/current-customer-journey.md`](journeys/current-customer-journey.md) |
+| 1 | Day 1 | Automated email — Registrants first email | [`journeys/generic-contact-education-flow.md`](journeys/generic-contact-education-flow.md) |
+| 2 | Day 3 if no reply | Automated email — Registrants second email | [`journeys/generic-contact-education-flow.md`](journeys/generic-contact-education-flow.md) |
+| 3 | Day 6 if no reply | Automated email — Registrants third email | [`journeys/generic-contact-education-flow.md`](journeys/generic-contact-education-flow.md) |
+| 4 | Day 9 if no reply | Automated email — Registrants fourth email | [`journeys/generic-contact-education-flow.md`](journeys/generic-contact-education-flow.md) |
 | 5+ | TBD | Remaining HubSpot sequence steps to document | [HubSpot registration journey](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2) |
 
 **Observations / gaps:**
 - Day 1, Day 3, Day 6, and Day 9 are documented so far; the remaining HubSpot sequence steps still need to be captured.
-- No distinction between Free vs Paid — everyone receives the same sequence today.
-- No explicit post-registration branching based on product activation, database creation, first query, or upgrade.
-- Resources under `resources/*.md` exist but are not yet tied to specific HubSpot journey steps.
+- This flow is sent before database ownership/activity is known, so it should stay generic and educational.
+- The current copy is too sales/meeting-oriented; a shorter CS-oriented replacement draft is in the detailed map.
+- The DB-aware customer journey should be mapped separately once we know whether the contact created a Free DB, Paid DB, or no DB.
+- Resources, Cloud pricing, Cloud product information, and Enterprise deployment options still need final URLs/CTAs tied to each step.
 
 ---
 
