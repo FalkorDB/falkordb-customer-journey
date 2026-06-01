@@ -303,6 +303,7 @@ Welcome to FalkorDB. Two quick things to start with:
 - **FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
 - **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
 - **Build your first graph:** <https://docs.falkordb.com/getting-started/>
+- **Browser UI — visualize and query your graph:** <https://docs.falkordb.com/browser/>
 
 **2. What you can build on FalkorDB:**
 
