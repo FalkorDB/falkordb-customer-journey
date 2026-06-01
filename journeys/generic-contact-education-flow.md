@@ -212,7 +212,8 @@ Welcome to FalkorDB. Here are the fastest links to get started:
 1. **Open the FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
 2. **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
 3. **Build your first graph (10 min walkthrough):** <https://docs.falkordb.com/getting-started/>
-4. **Cypher cheat sheet:** <https://docs.falkordb.com/cypher/>
+4. **Browser UI — visualize and query your graph:** <https://docs.falkordb.com/browser/>
+5. **Cypher cheat sheet:** <https://docs.falkordb.com/cypher/>
 
 Want to compare plans? **Cloud plans and pricing:** {Cloud pricing link}.
 
@@ -238,7 +239,7 @@ If you're still getting set up, here's a short checklist that takes most teams u
 2. Create a database (Free tier is fine to start).
 3. Connect using a client library (Python, Node.js, Java, Go, Rust, C#, PHP).
 4. Run your first Cypher query.
-5. Explore the graph in the built-in browser UI.
+5. Explore the graph in the built-in browser UI — see the **[Browser UI docs](https://docs.falkordb.com/browser/)**.
 
 Helpful docs:
 
@@ -268,6 +269,7 @@ This is the last email in this short getting-started series. All the FalkorDB re
 - **Documentation:** <https://docs.falkordb.com/>
 - **Cypher reference:** <https://docs.falkordb.com/cypher/>
 - **Client libraries:** <https://docs.falkordb.com/getting-started/clients.html>
+- **Browser UI:** <https://docs.falkordb.com/browser/>
 - **GraphRAG SDK:** <https://docs.falkordb.com/genai-tools/graphrag-sdk>
 - **Cloud plans and pricing:** {Cloud pricing link}
 - **Enterprise deployment:** {Enterprise deployment link}
