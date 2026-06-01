@@ -187,6 +187,11 @@ The current 4-step sales-flavored sequence is replaced with a **3-step CS-orient
 | **Tone** | Customer success, documentation-first, low-pressure | Customer success, discovery-driven, "here's what you can build" |
 | **Shared elements (both paths)** | Cloud pricing link, Enterprise deployment link, support/community links at the bottom of every email |
 
+**Two layers of A/B testing:**
+
+1. **Path-level (A vs B):** Education vs Use case framing — 50/50 audience split.
+2. **Email-level (Version A vs Version B) inside each path:** every step has two HubSpot variants so we can also test subject line / copy style holding the path fixed. Pick one winner per step before promoting a path.
+
 **Shared placeholders to confirm before launch:**
 
 - `{Cloud pricing link}` — final FalkorDB Cloud pricing page URL.
@@ -202,6 +207,8 @@ CS-led, documentation-first. Each step links to getting-started content and self
 ### Path A — Step 1 — Day 1
 
 **Goal:** welcome the contact and give them the fastest path to self-serve setup.
+
+#### Version A — "Getting started" (link-list framing)
 
 **Subject:** Getting started with FalkorDB
 
@@ -223,11 +230,36 @@ Regards,
 
 The FalkorDB Team
 
+#### Version B — "10 minutes to first query" (single-CTA framing)
+
+**Subject:** 10 minutes from sign-up to your first graph query
+
+Hi {First Name},
+
+Welcome to FalkorDB. The fastest way to see what FalkorDB can do is to run a query against your own graph — most teams get there in under 10 minutes.
+
+**Start here →** <https://docs.falkordb.com/getting-started/>
+
+Once your database is up, the **[Browser UI](https://docs.falkordb.com/browser/)** lets you visualize and query the graph without writing any client code.
+
+If you'd rather just open the console: <https://app.falkordb.cloud/signin>
+
+Need pricing or a dedicated/self-hosted setup?
+
+- **Cloud plans and pricing:** {Cloud pricing link}
+- **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
 ---
 
 ### Path A — Step 2 — Day 3 (if no reply)
 
 **Goal:** help contacts who have not replied move from "signed up" to "first query," without pressure.
+
+#### Version A — "Setup checklist" (numbered checklist framing)
 
 **Subject:** A short FalkorDB setup checklist
 
@@ -253,11 +285,36 @@ Regards,
 
 The FalkorDB Team
 
+#### Version B — "Pick your client library" (developer-stack framing)
+
+**Subject:** Connect FalkorDB from your stack
+
+Hi {First Name},
+
+Whatever stack you're on, there's a first-class FalkorDB client. Pick yours and you'll have a connection open in a few minutes:
+
+- **Python:** <https://docs.falkordb.com/getting-started/clients.html>
+- **Node.js / TypeScript:** <https://docs.falkordb.com/getting-started/clients.html>
+- **Java, Go, Rust, C#, PHP:** <https://docs.falkordb.com/getting-started/clients.html>
+
+Once connected:
+
+- Run your first Cypher query — **[Cypher reference](https://docs.falkordb.com/cypher/)**.
+- Visualize and explore your graph in the **[Browser UI](https://docs.falkordb.com/browser/)** — no client code required.
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
 ---
 
 ### Path A — Step 3 — Day 6 (if no reply)
 
 **Goal:** close the generic education flow politely and leave one consolidated resource list. After this email, contacts continue in the appropriate DB-aware journey (Free or Paid).
+
+#### Version A — "All resources in one place" (comprehensive index)
 
 **Subject:** FalkorDB resources in one place
 
@@ -282,6 +339,29 @@ Regards,
 
 The FalkorDB Team
 
+#### Version B — "Bookmark these three" (minimalist framing)
+
+**Subject:** Three FalkorDB links worth bookmarking
+
+Hi {First Name},
+
+Last email in this short series. If you only bookmark three things, make it these:
+
+1. **Docs home** — everything you'll need as you go: <https://docs.falkordb.com/>
+2. **Browser UI** — visualize and query your graph without writing client code: <https://docs.falkordb.com/browser/>
+3. **Cloud console** — manage databases and billing: <https://app.falkordb.cloud/signin>
+
+When you're ready to pick a plan or talk to us about a dedicated setup:
+
+- **Cloud plans and pricing:** {Cloud pricing link}
+- **Enterprise deployment:** {Enterprise deployment link}
+
+And if you ever get stuck, our community is active on **[Discord](https://discord.gg/AEHAVvH5GU)** and **[GitHub Discussions](https://github.com/orgs/FalkorDB/discussions)**.
+
+Regards,
+
+The FalkorDB Team
+
 ---
 
 ## Path B — Use case
@@ -291,6 +371,8 @@ CS-led, discovery-driven. Step 1 still teaches getting started, but anchors it i
 ### Path B — Step 1 — Day 1
 
 **Goal:** welcome the contact, show them how to get started, and give a one-line snapshot of the kinds of things teams build on FalkorDB.
+
+#### Version A — "Welcome + what you can build" (broad menu)
 
 **Subject:** Welcome to FalkorDB — here's what you can build
 
@@ -322,11 +404,42 @@ Regards,
 
 The FalkorDB Team
 
+#### Version B — "What are you building?" (discovery question framing)
+
+**Subject:** What are you building on FalkorDB?
+
+Hi {First Name},
+
+Welcome to FalkorDB. Quick question: **what are you trying to build?**
+
+Most teams arrive here for one of these:
+
+- **AI / GraphRAG** — give your LLM a knowledge graph so answers are grounded and traceable.
+- **Recommendations** — model users, products, and behavior as a graph.
+- **Fraud / risk** — find rings and clusters that tabular data hides.
+- **IT / network / supply chain** — model dependencies and run impact analysis.
+
+Reply with one line about your use case and we'll point you straight at the most relevant docs and examples.
+
+While you wait, get set up in a few minutes:
+
+- **Cloud console:** <https://app.falkordb.cloud/signin>
+- **First graph in 10 minutes:** <https://docs.falkordb.com/getting-started/>
+- **Browser UI:** <https://docs.falkordb.com/browser/>
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
 ---
 
 ### Path B — Step 2 — Day 3 (if no reply)
 
 **Goal:** deepen the use-case story for AI / GraphRAG / knowledge graph builders, since this is FalkorDB's most differentiated use case.
+
+#### Version A — "Building AI on FalkorDB" (capability list)
 
 **Subject:** Building AI and knowledge graphs on FalkorDB
 
@@ -347,11 +460,38 @@ Regards,
 
 The FalkorDB Team
 
+#### Version B — "Why graphs for RAG" (problem-first framing)
+
+**Subject:** Why your RAG keeps hallucinating — and what a graph fixes
+
+Hi {First Name},
+
+Vector-only RAG is great at finding *similar* text. It's not great at answering questions that need to *connect* facts ("which of our customers in the EU use feature X and have an open support ticket?").
+
+That's where a graph helps:
+
+- **Structure the relationships, not just the embeddings** — entities, facts, and how they connect.
+- **Ground the LLM in traceable answers** — every claim is backed by a path in the graph.
+- **Built-in multi-tenancy** — give each user/tenant their own graph without standing up new infra.
+- **Multi-agent orchestration** with the **GraphRAG SDK** — ingest, reason, answer.
+
+Start here: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+
+Next email covers non-AI use cases (recommendations, fraud, infrastructure, supply chain) if those are closer to what you're building.
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
 ---
 
 ### Path B — Step 3 — Day 6 (if no reply)
 
 **Goal:** cover the remaining operational/data use cases for contacts who didn't engage with the AI/GraphRAG angle, then politely close the flow.
+
+#### Version A — "Operational graph workloads" (capability list)
 
 **Subject:** Recommendations, fraud, infrastructure, supply chain on FalkorDB
 
@@ -367,6 +507,27 @@ FalkorDB is a fit for several operational graph workloads. A few patterns teams 
 If any of these match what you're building, our docs are the best starting point: <https://docs.falkordb.com/>
 
 This is the last email in this short series. After this, you'll only hear from us based on what happens in your account.
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
+#### Version B — "Pick the pattern closest to yours" (pick-one framing)
+
+**Subject:** Which of these looks closest to what you're building?
+
+Hi {First Name},
+
+Quick way to wrap up this short series — pick the pattern closest to what you're building and dive in:
+
+- **Recommendations** — users, products, and behavior modeled as a graph for collaborative filtering and personalization. → <https://docs.falkordb.com/>
+- **Fraud / risk** — detect rings and shared-identity clusters that tabular queries miss. → <https://docs.falkordb.com/>
+- **IT / network / dependencies** — blast radius, impact analysis, and runbook automation. → <https://docs.falkordb.com/>
+- **Supply chain** — suppliers, products, warehouses, and single-source-of-supply risk. → <https://docs.falkordb.com/>
+
+This is the last email in this short series. From here, you'll only hear from us based on what happens in your account — or if you reply with a question.
 
 **Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
 
