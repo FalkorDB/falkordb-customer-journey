@@ -4,7 +4,7 @@
 
 **Audience:** 50% of **new registrants** in HubSpot (Path A arm of the path-level A/B test).
 
-**Framing:** CS-led, documentation-first. Each step links to getting-started content and self-serve resources, with Cloud pricing and Enterprise deployment always visible.
+**Framing:** CS-led, documentation-first, no sales push. Each step links to getting-started content and self-serve resources. Cloud pricing appears as an informational link from Day 1; the Enterprise deployment link is kept out of the Day 1 welcome and only surfaces in the later steps.
 
 **Cadence:** Day 1 → Day 3 (if no reply) → Day 6 (if no reply).
 
@@ -30,9 +30,7 @@ Welcome to FalkorDB! We're really glad to have you on board. We're here to help 
 4. **Browser UI — visualize and query your graph:** <https://docs.falkordb.com/browser/>
 5. **Cypher cheat sheet:** <https://docs.falkordb.com/cypher/>
 
-Want to compare plans? **Cloud plans and pricing:** {Cloud pricing link}.
-
-Need a dedicated or self-hosted setup? **Enterprise deployment:** {Enterprise deployment link}.
+Curious about the Cloud tiers? You can read through them here: **Cloud plans and pricing:** {Cloud pricing link}.
 
 Regards,
 
@@ -52,10 +50,7 @@ Once your database is up, the **[Browser UI](https://docs.falkordb.com/browser/)
 
 If you'd rather just open the console: <https://app.falkordb.cloud/signin>
 
-Need pricing or a dedicated/self-hosted setup?
-
-- **Cloud plans and pricing:** {Cloud pricing link}
-- **Enterprise deployment:** {Enterprise deployment link}
+Want to learn about the Cloud tiers? Here's an overview: **Cloud plans and pricing:** {Cloud pricing link}
 
 Regards,
 
@@ -159,7 +154,7 @@ Thanks for being part of the FalkorDB community! Last email in this short series
 2. **Browser UI** — visualize and query your graph without writing client code: <https://docs.falkordb.com/browser/>
 3. **Cloud console** — manage databases and billing: <https://app.falkordb.cloud/signin>
 
-When you're ready to pick a plan or talk to us about a dedicated setup:
+If it's useful to learn more about the Cloud tiers or self-hosted options:
 
 - **Cloud plans and pricing:** {Cloud pricing link}
 - **Enterprise deployment:** {Enterprise deployment link}

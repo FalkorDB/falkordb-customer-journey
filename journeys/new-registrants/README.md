@@ -36,8 +36,8 @@ The legacy 4-step sales-flavored sequence is being replaced with a **3-step CS-o
 | **Audience split** | 50% of new registrants | 50% of new registrants |
 | **Primary metric** | Clicks to docs / Cloud console | Clicks to use-case docs (GraphRAG, Knowledge Graph, Recommendations, Fraud, Infra, Supply Chain) |
 | **Secondary metrics** | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks |
-| **Tone** | Customer success, documentation-first, low-pressure | Customer success, discovery-driven, "here's what you can build" |
-| **Shared elements (both paths)** | Cloud pricing link, Enterprise deployment link, support/community links at the bottom of every email |
+| **Tone** | Customer success, documentation-first, low-pressure, no sales push | Customer success, discovery-driven, "here's what you can build", no sales push |
+| **Shared elements (both paths)** | Educational getting-started links in every email. Cloud pricing shown as an informational link from Day 1; Enterprise deployment link only appears in the later steps (kept out of the Day 1 welcome to avoid a sales tone). |
 
 ### Two layers of A/B testing
 

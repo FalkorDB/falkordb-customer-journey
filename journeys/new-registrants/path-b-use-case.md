@@ -42,7 +42,7 @@ Welcome to FalkorDB! We're excited to have you join our community and can't wait
 
 Over the next couple of emails we'll go deeper into the use cases above.
 
-**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+Want to learn about the Cloud tiers? Here's an overview: **Cloud plans and pricing:** {Cloud pricing link}
 
 Regards,
 
@@ -71,7 +71,7 @@ While you wait, get set up in a few minutes:
 - **First graph in 10 minutes:** <https://docs.falkordb.com/getting-started/>
 - **Browser UI:** <https://docs.falkordb.com/browser/>
 
-**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+Want to learn about the Cloud tiers? Here's an overview: **Cloud plans and pricing:** {Cloud pricing link}
 
 Regards,
 
