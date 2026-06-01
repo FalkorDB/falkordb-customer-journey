@@ -168,27 +168,55 @@ The FalkorDB Team
 
 ---
 
-## Proposed CS-oriented replacement flow (for review)
+## Proposed CS-oriented replacement flow (A/B test, for review)
 
-This proposed version keeps the same rough cadence but changes the tone from sales follow-up to customer-success education.
+The current 4-step sales-flavored sequence is replaced with a **3-step CS-oriented flow** that we test as two parallel paths. Cadence is identical across paths so we can isolate the effect of the messaging strategy.
 
-### Proposed Step 1 — Day 1
+**Cadence (both paths):** Day 1 → Day 3 (if no reply) → Day 6 (if no reply).
+
+**Why 3 steps:** subsequent journeys (Free DB creation, Paid DB) will pick up engagement from here, so this generic flow should stay short and end before the user-specific journeys start.
+
+### Test design
+
+| | Path A — Education | Path B — Use case |
+|---|---|---|
+| **Hypothesis** | Contacts activate faster when given a clear, low-pressure path to docs and Cloud setup. | Contacts engage more when they see concrete things they can build with FalkorDB. |
+| **Audience split** | 50% | 50% |
+| **Primary metric** | Clicks to docs / Cloud console | Clicks to use-case docs (GraphRAG, Knowledge Graph, Recommendations, Fraud, Infra, Supply Chain) |
+| **Secondary metrics** | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks |
+| **Tone** | Customer success, documentation-first, low-pressure | Customer success, discovery-driven, "here's what you can build" |
+| **Shared elements (both paths)** | Cloud pricing link, Enterprise deployment link, support/community links at the bottom of every email |
+
+**Shared placeholders to confirm before launch:**
+
+- `{Cloud pricing link}` — final FalkorDB Cloud pricing page URL.
+- `{Enterprise deployment link}` — Enterprise deployment / contact path.
+- `{First Name}` — HubSpot personalization token to confirm.
+
+---
+
+## Path A — Education
+
+CS-led, documentation-first. Each step links to getting-started content and self-serve resources, with Cloud pricing and Enterprise deployment always visible.
+
+### Path A — Step 1 — Day 1
 
 **Goal:** welcome the contact and give them the fastest path to self-serve setup.
 
-**Subject:** Getting started with FalkorDB Cloud
+**Subject:** Getting started with FalkorDB
 
 Hi {First Name},
 
-Welcome to FalkorDB. If you're evaluating FalkorDB Cloud, these are the best places to start:
+Welcome to FalkorDB. Here are the fastest links to get started:
 
-1. **Create or open your Cloud instance:** <https://app.falkordb.cloud/signin>
-2. **Follow the getting-started guide:** <https://docs.falkordb.com/cloud>
-3. **Build your first graph:** <https://docs.falkordb.com/getting-started/>
+1. **Open the FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
+2. **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
+3. **Build your first graph (10 min walkthrough):** <https://docs.falkordb.com/getting-started/>
+4. **Cypher cheat sheet:** <https://docs.falkordb.com/cypher/>
 
-You can also review Cloud plans and pricing here: {Cloud pricing link}.
+Want to compare plans? **Cloud plans and pricing:** {Cloud pricing link}.
 
-If your team needs a dedicated or Enterprise deployment, we’ll add that path here: {Enterprise deployment link}.
+Need a dedicated or self-hosted setup? **Enterprise deployment:** {Enterprise deployment link}.
 
 Regards,
 
@@ -196,27 +224,29 @@ The FalkorDB Team
 
 ---
 
-### Proposed Step 2 — Day 3
+### Path A — Step 2 — Day 3 (if no reply)
 
-**Goal:** help contacts who have not replied find the key setup docs without pressure.
+**Goal:** help contacts who have not replied move from "signed up" to "first query," without pressure.
 
-**Subject:** FalkorDB Cloud setup checklist
+**Subject:** A short FalkorDB setup checklist
 
 Hi {First Name},
 
-Here is a short checklist for getting started with FalkorDB Cloud:
+If you're still getting set up, here's a short checklist that takes most teams under 15 minutes end-to-end:
 
 1. Sign in to the Cloud console.
-2. Create a database or open an existing one.
-3. Connect using a client library.
+2. Create a database (Free tier is fine to start).
+3. Connect using a client library (Python, Node.js, Java, Go, Rust, C#, PHP).
 4. Run your first Cypher query.
-5. Use the browser UI to inspect and explore your graph.
+5. Explore the graph in the built-in browser UI.
 
 Helpful docs:
 
-- Cloud getting started: <https://docs.falkordb.com/cloud>
-- Client libraries: <https://docs.falkordb.com/getting-started/clients.html>
-- Cypher reference: <https://docs.falkordb.com/cypher/>
+- **Client libraries quick start:** <https://docs.falkordb.com/getting-started/clients.html>
+- **Data modeling guide:** <https://docs.falkordb.com/>
+- **Indexing & performance tips:** <https://docs.falkordb.com/>
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
 
 Regards,
 
@@ -224,47 +254,131 @@ The FalkorDB Team
 
 ---
 
-### Proposed Step 3 — Day 6
+### Path A — Step 3 — Day 6 (if no reply)
 
-**Goal:** introduce common use cases, especially GraphRAG, without assuming the contact has started building.
-
-**Subject:** Common ways teams use FalkorDB
-
-Hi {First Name},
-
-FalkorDB is commonly used for knowledge graphs, recommendations, fraud detection, infrastructure mapping, and GraphRAG applications.
-
-If you're exploring GraphRAG, start here:
-
-- GraphRAG SDK docs: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
-- FalkorDB use cases: <https://docs.falkordb.com/>
-
-For Cloud, you can compare available options here: {Cloud pricing link}. For Enterprise deployment, use this path: {Enterprise deployment link}.
-
-Regards,
-
-The FalkorDB Team
-
----
-
-### Proposed Step 4 — Day 9
-
-**Goal:** close the generic education flow politely and leave useful links.
+**Goal:** close the generic education flow politely and leave one consolidated resource list. After this email, contacts continue in the appropriate DB-aware journey (Free or Paid).
 
 **Subject:** FalkorDB resources in one place
 
 Hi {First Name},
 
-This is the last email in this short getting-started series. Here are the main FalkorDB resources in one place:
+This is the last email in this short getting-started series. All the FalkorDB resources you may need are below:
 
-- Cloud console: <https://app.falkordb.cloud/signin>
-- Documentation: <https://docs.falkordb.com/>
-- Cloud plans and pricing: {Cloud pricing link}
-- Enterprise deployment: {Enterprise deployment link}
-- Community forum: <https://github.com/orgs/FalkorDB/discussions>
+- **Cloud console:** <https://app.falkordb.cloud/signin>
+- **Documentation:** <https://docs.falkordb.com/>
+- **Cypher reference:** <https://docs.falkordb.com/cypher/>
+- **Client libraries:** <https://docs.falkordb.com/getting-started/clients.html>
+- **GraphRAG SDK:** <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- **Cloud plans and pricing:** {Cloud pricing link}
+- **Enterprise deployment:** {Enterprise deployment link}
+- **Community discussions:** <https://github.com/orgs/FalkorDB/discussions>
+- **Discord:** <https://discord.gg/AEHAVvH5GU>
 
 No need to reply unless we can help with something specific.
 
 Regards,
 
 The FalkorDB Team
+
+---
+
+## Path B — Use case
+
+CS-led, discovery-driven. Step 1 still teaches getting started, but anchors it in *what the contact could build*. Steps 2 and 3 expand on those use cases — Step 2 covers AI/GraphRAG use cases, Step 3 covers operational/data use cases.
+
+### Path B — Step 1 — Day 1
+
+**Goal:** welcome the contact, show them how to get started, and give a one-line snapshot of the kinds of things teams build on FalkorDB.
+
+**Subject:** Welcome to FalkorDB — here's what you can build
+
+Hi {First Name},
+
+Welcome to FalkorDB. Two quick things to start with:
+
+**1. Get set up in a few minutes:**
+
+- **FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
+- **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
+- **Build your first graph:** <https://docs.falkordb.com/getting-started/>
+
+**2. What you can build on FalkorDB:**
+
+- **GraphRAG / AI applications** — knowledge-graph-backed RAG with the GraphRAG SDK.
+- **Knowledge graphs** — connect entities, concepts, and facts for search, chatbots, and discovery.
+- **Recommendations** — "customers who bought X also bought Y," personalized feeds.
+- **Fraud detection** — surface fraud rings by shared devices, phones, addresses, IPs.
+- **IT infrastructure / dependency mapping** — blast-radius and impact analysis.
+- **Supply chain** — suppliers, products, warehouses, single-source risk.
+
+Over the next couple of emails we'll go deeper into the use cases above.
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+### Path B — Step 2 — Day 3 (if no reply)
+
+**Goal:** deepen the use-case story for AI / GraphRAG / knowledge graph builders, since this is FalkorDB's most differentiated use case.
+
+**Subject:** Building AI and knowledge graphs on FalkorDB
+
+Hi {First Name},
+
+If you're building AI-powered applications, FalkorDB is designed for it:
+
+- **GraphRAG SDK** — turn user questions into Cypher queries automatically, with OpenAI, Gemini, or Groq. Docs: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- **Knowledge graphs** — connect entities, concepts, and facts to give LLMs richer, less hallucination-prone context.
+- **Multi-tenant by default** — built-in multi-tenant capabilities for assistant / chatbot products.
+- **Multi-agent workflows** — orchestrate ingestion and reasoning across multiple agents using the GraphRAG SDK.
+
+If you're not building with AI, the next email covers more operational use cases (recommendations, fraud, infrastructure, supply chain).
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+### Path B — Step 3 — Day 6 (if no reply)
+
+**Goal:** cover the remaining operational/data use cases for contacts who didn't engage with the AI/GraphRAG angle, then politely close the flow.
+
+**Subject:** Recommendations, fraud, infrastructure, supply chain on FalkorDB
+
+Hi {First Name},
+
+FalkorDB is a fit for several operational graph workloads. A few patterns teams use most:
+
+- **Recommendation engines** — collaborative filtering ("customers who bought X also bought Y") and personalized recommendations through shared user/product graphs.
+- **Fraud detection** — find fraud rings by shared devices, phone numbers, addresses, or IPs; detect suspicious clusters that are invisible in tabular data.
+- **IT infrastructure / dependency mapping** — impact analysis, blast radius, dependency chains for services and databases.
+- **Supply chain** — model suppliers, products, warehouses, and single-source-of-supply risk.
+
+If any of these match what you're building, our docs are the best starting point: <https://docs.falkordb.com/>
+
+This is the last email in this short series. After this, you'll only hear from us based on what happens in your account.
+
+**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+## A/B test next steps (operational)
+
+1. Confirm the Cloud pricing URL and Enterprise deployment link before launch.
+2. Set the HubSpot personalization token for `{First Name}`.
+3. Split the registrants list 50/50 between Path A and Path B in HubSpot.
+4. Run the test for at least 4 weeks (or until ~1,000 contacts per arm).
+5. Compare on primary metric first, then on DB-creation rate.
+6. The winning path becomes the default; the losing path remains documented here for reference.
+7. After this flow, contacts move into the **Free DB Creation** or **Paid DB** journeys (designed next).

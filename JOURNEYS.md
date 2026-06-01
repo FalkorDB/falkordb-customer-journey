@@ -51,7 +51,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 **Observations / gaps:**
 - Day 1, Day 3, Day 6, and Day 9 are documented so far; the remaining HubSpot sequence steps still need to be captured.
 - This flow is sent before database ownership/activity is known, so it should stay generic and educational.
-- The current copy is too sales/meeting-oriented; a shorter CS-oriented replacement draft is in the detailed map.
+- The current copy is too sales/meeting-oriented. A proposed 3-step CS-oriented replacement is drafted in the detailed map as an **A/B test**: Path A (Education) vs Path B (Use case).
 - The DB-aware customer journey should be mapped separately once we know whether the contact created a Free DB, Paid DB, or no DB.
 - Resources, Cloud pricing, Cloud product information, and Enterprise deployment options still need final URLs/CTAs tied to each step.
 
