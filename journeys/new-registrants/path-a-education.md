@@ -22,7 +22,7 @@
 
 Hi {First Name},
 
-Welcome to FalkorDB. Here are the fastest links to get started:
+Welcome to FalkorDB! We're really glad to have you on board. We're here to help you build with graph data simply and efficiently, so here are the fastest links to get started:
 
 1. **Open the FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
 2. **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
@@ -44,7 +44,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-Welcome to FalkorDB. The fastest way to see what FalkorDB can do is to run a query against your own graph — most teams get there in under 10 minutes.
+Welcome to FalkorDB — we're excited to have you with us! The fastest way to see what FalkorDB can do is to run a query against your own graph, and most teams get there in under 10 minutes.
 
 **Start here →** <https://docs.falkordb.com/getting-started/>
 
@@ -73,7 +73,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-If you're still getting set up, here's a short checklist that takes most teams under 15 minutes end-to-end:
+Hope you're enjoying exploring FalkorDB so far! If you're still getting set up, here's a short checklist that takes most teams under 15 minutes end-to-end:
 
 1. Sign in to the Cloud console.
 2. Create a database (Free tier is fine to start).
@@ -99,7 +99,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-Whatever stack you're on, there's a first-class FalkorDB client. Pick yours and you'll have a connection open in a few minutes:
+Glad to have you building with FalkorDB! Whatever stack you're on, there's a first-class FalkorDB client — pick yours and you'll have a connection open in a few minutes:
 
 - **Python:** <https://docs.falkordb.com/getting-started/clients.html>
 - **Node.js / TypeScript:** <https://docs.falkordb.com/getting-started/clients.html>
@@ -128,7 +128,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-This is the last email in this short getting-started series. All the FalkorDB resources you may need are below:
+Thanks for spending the last week with FalkorDB! This is the last email in this short getting-started series — all the FalkorDB resources you may need are below:
 
 - **Cloud console:** <https://app.falkordb.cloud/signin>
 - **Documentation:** <https://docs.falkordb.com/>
@@ -153,7 +153,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-Last email in this short series. If you only bookmark three things, make it these:
+Thanks for being part of the FalkorDB community! Last email in this short series — if you only bookmark three things, make it these:
 
 1. **Docs home** — everything you'll need as you go: <https://docs.falkordb.com/>
 2. **Browser UI** — visualize and query your graph without writing client code: <https://docs.falkordb.com/browser/>
