@@ -4,19 +4,17 @@
 
 **Audience:** 50% of **new registrants** in HubSpot (Path B arm of the path-level A/B test).
 
-**Framing:** CS-led, discovery-driven. Step 1 still teaches getting started, but anchors it in *what the contact could build*. Steps 2 and 3 expand on those use cases — Step 2 covers AI/GraphRAG use cases, Step 3 covers operational/data use cases.
+**Framing:** CS-led, use-case-driven. Step 1 teaches getting started, but anchors it in *what the contact could build*. Steps 2 and 3 expand on those use cases — Step 2 covers AI/GraphRAG use cases, Step 3 covers operational/data use cases.
 
 **Cadence:** Day 1 → Day 3 (if no reply) → Day 6 (if no reply).
 
-**Within-step A/B:** every step has a **Version A** and **Version B** so HubSpot can also test subject line / copy style with the path held fixed.
+**One version per step:** Path B is the use-case arm and runs a single version per step (no within-step A/B). The path-level A/B test is Path A (Education) vs Path B (Use case).
 
 ---
 
 ## Path B — Step 1 — Day 1
 
-**Goal:** welcome the contact, show them how to get started, and give a one-line snapshot of the kinds of things teams build on FalkorDB.
-
-### Version A — "Welcome + what you can build" (broad menu)
+**Goal:** welcome the contact, show them how to get started, and give a snapshot of the kinds of things teams build on FalkorDB.
 
 **Subject:** Welcome to FalkorDB — here's what you can build
 
@@ -48,42 +46,11 @@ Regards,
 
 The FalkorDB Team
 
-### Version B — "What are you building?" (discovery question framing)
-
-**Subject:** What are you building on FalkorDB?
-
-Hi {First Name},
-
-Welcome to FalkorDB — really happy to have you here! Quick question to make sure we point you in the right direction: **what are you trying to build?**
-
-Most teams arrive here for one of these:
-
-- **AI / GraphRAG** — give your LLM a knowledge graph so answers are grounded and traceable.
-- **Recommendations** — model users, products, and behavior as a graph.
-- **Fraud / risk** — find rings and clusters that tabular data hides.
-- **IT / network / supply chain** — model dependencies and run impact analysis.
-
-Reply with one line about your use case and we'll point you straight at the most relevant docs and examples.
-
-While you wait, get set up in a few minutes:
-
-- **Cloud console:** <https://app.falkordb.cloud/signin>
-- **First graph in 10 minutes:** <https://docs.falkordb.com/getting-started/>
-- **Browser UI:** <https://docs.falkordb.com/browser/>
-
-Want to learn about the Cloud tiers? Here's an overview: **Cloud plans and pricing:** {Cloud pricing link}
-
-Regards,
-
-The FalkorDB Team
-
 ---
 
 ## Path B — Step 2 — Day 3 (if no reply)
 
 **Goal:** deepen the use-case story for AI / GraphRAG / knowledge graph builders, since this is FalkorDB's most differentiated use case.
-
-### Version A — "Building AI on FalkorDB" (capability list)
 
 **Subject:** Building AI and knowledge graphs on FalkorDB
 
@@ -104,38 +71,11 @@ Regards,
 
 The FalkorDB Team
 
-### Version B — "Why graphs for RAG" (problem-first framing)
-
-**Subject:** Why your RAG keeps hallucinating — and what a graph fixes
-
-Hi {First Name},
-
-Glad to have you building with FalkorDB! Quick thought if you're working on RAG: vector-only RAG is great at finding *similar* text, but not great at answering questions that need to *connect* facts ("which of our customers in the EU use feature X and have an open support ticket?").
-
-That's where a graph helps:
-
-- **Structure the relationships, not just the embeddings** — entities, facts, and how they connect.
-- **Ground the LLM in traceable answers** — every claim is backed by a path in the graph.
-- **Built-in multi-tenancy** — give each user/tenant their own graph without standing up new infra.
-- **Multi-agent orchestration** with the **GraphRAG SDK** — ingest, reason, answer.
-
-Start here: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
-
-Next email covers non-AI use cases (recommendations, fraud, infrastructure, supply chain) if those are closer to what you're building.
-
-**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
-
-Regards,
-
-The FalkorDB Team
-
 ---
 
 ## Path B — Step 3 — Day 6 (if no reply)
 
 **Goal:** cover the remaining operational/data use cases for contacts who didn't engage with the AI/GraphRAG angle, then politely close the flow.
-
-### Version A — "Operational graph workloads" (capability list)
 
 **Subject:** Recommendations, fraud, infrastructure, supply chain on FalkorDB
 
@@ -151,27 +91,6 @@ Thanks for sticking with us through this short series! FalkorDB is a fit for sev
 If any of these match what you're building, our docs are the best starting point: <https://docs.falkordb.com/>
 
 This is the last email in this short series. After this, you'll only hear from us based on what happens in your account.
-
-**Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
-
-Regards,
-
-The FalkorDB Team
-
-### Version B — "Pick the pattern closest to yours" (pick-one framing)
-
-**Subject:** Which of these looks closest to what you're building?
-
-Hi {First Name},
-
-Thanks for being part of the FalkorDB community! Quick way to wrap up this short series — pick the pattern closest to what you're building and dive in:
-
-- **Recommendations** — users, products, and behavior modeled as a graph for collaborative filtering and personalization. → <https://docs.falkordb.com/>
-- **Fraud / risk** — detect rings and shared-identity clusters that tabular queries miss. → <https://docs.falkordb.com/>
-- **IT / network / dependencies** — blast radius, impact analysis, and runbook automation. → <https://docs.falkordb.com/>
-- **Supply chain** — suppliers, products, warehouses, and single-source-of-supply risk. → <https://docs.falkordb.com/>
-
-This is the last email in this short series. From here, you'll only hear from us based on what happens in your account — or if you reply with a question.
 
 **Cloud plans and pricing:** {Cloud pricing link} · **Enterprise deployment:** {Enterprise deployment link}
 

@@ -16,7 +16,7 @@ This directory documents the journey for **new registrants** in HubSpot: contact
 |---|---|---|
 | [`legacy-flow.md`](legacy-flow.md) | The current HubSpot 4-step sequence (Days 1 / 3 / 6 / 9), all Version A only. Sales-flavored. | 🟠 Legacy — active in HubSpot today, planned for replacement |
 | [`path-a-education.md`](path-a-education.md) | **New flow, Path A — Education.** 3 steps (Days 1 / 3 / 6), CS-led, documentation-first. Each step has Version A and Version B for email-level A/B testing. | 🟢 New — proposed, for review |
-| [`path-b-use-case.md`](path-b-use-case.md) | **New flow, Path B — Use case.** 3 steps (Days 1 / 3 / 6), CS-led, discovery-driven. Each step has Version A and Version B for email-level A/B testing. | 🟢 New — proposed, for review |
+| [`path-b-use-case.md`](path-b-use-case.md) | **New flow, Path B — Use case.** 3 steps (Days 1 / 3 / 6), CS-led, use-case-focused. One version per step (no within-step A/B). | 🟢 New — proposed, for review |
 
 ---
 
@@ -42,7 +42,7 @@ The legacy 4-step sales-flavored sequence is being replaced with a **3-step CS-o
 ### Two layers of A/B testing
 
 1. **Path-level (A vs B):** Education vs Use case framing — 50/50 audience split.
-2. **Email-level (Version A vs Version B) inside each path:** every step has two HubSpot variants so we can also test subject line / copy style with the path held fixed. Pick one winner per step before promoting a path.
+2. **Email-level (Version A vs Version B), Path A only:** each Path A step has two HubSpot variants so we can also test subject line / copy style with the path held fixed. Pick one winner per step before promoting the path. **Path B runs a single version per step** and is compared at the path level only.
 
 ### Shared placeholders to confirm before launch
 
