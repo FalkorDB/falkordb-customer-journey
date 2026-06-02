@@ -22,7 +22,7 @@
 
 Hi {First Name},
 
-Welcome to FalkorDB! We're really glad to have you on board. We're here to help you build with graph data simply and efficiently, so here are the fastest links to get started:
+Welcome to FalkorDB! We're really glad to have you on board. We're here to help you build with graph data simply and efficiently — and because FalkorDB is built for ultra-low latency and a small memory footprint, it can meaningfully reduce the cost and size of your AI workloads. Here are the fastest links to get started:
 
 1. **Open the FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
 2. **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
@@ -46,7 +46,7 @@ The FalkorDB Team
 
 Hi {First Name},
 
-Welcome to FalkorDB — we're excited to have you with us! The fastest way to see what FalkorDB can do is to spin up a **free database** and run a query against your own graph. It's free to try, takes a couple of minutes, and most teams get to their first query in under 10.
+Welcome to FalkorDB — we're excited to have you with us! The fastest way to see what FalkorDB can do is to spin up a **free database** and run a query against your own graph. It's free to try, takes a couple of minutes, and most teams get to their first query in under 10. And because FalkorDB is built for ultra-low latency and a small memory footprint, it can meaningfully reduce the cost and size of your AI workloads.
 
 **Create your free database →** <https://app.falkordb.cloud/signin>
 

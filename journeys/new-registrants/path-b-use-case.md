@@ -20,7 +20,7 @@
 
 Hi {First Name},
 
-Welcome to FalkorDB! We're excited to have you join our community and can't wait to see what you build with us. Two quick things to start with:
+Welcome to FalkorDB! We're excited to have you join our community and can't wait to see what you build with us. And because FalkorDB is built for ultra-low latency and a small memory footprint, it can meaningfully reduce the cost and size of your AI workloads. Two quick things to start with:
 
 **1. Get set up in a few minutes:**
 
