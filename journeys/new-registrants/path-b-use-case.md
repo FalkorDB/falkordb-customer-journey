@@ -14,7 +14,7 @@
 
 ## Path B — Step 1 — Day 1
 
-**Goal:** welcome the contact, show them how to get started, and give a snapshot of the kinds of things teams build on FalkorDB.
+**Goal:** welcome the contact, gently encourage them to spin up a free database if they'd like, and give a snapshot of the kinds of things teams build on FalkorDB.
 
 **Subject:** Welcome to FalkorDB — here's what you can build
 
@@ -24,7 +24,9 @@ Welcome to FalkorDB! We're excited to have you join our community and can't wait
 
 **1. Get set up in a few minutes:**
 
-- **FalkorDB Cloud console:** <https://app.falkordb.cloud/signin>
+The best way to get a feel for FalkorDB is to spin up a **free database** — it's free to try, takes a couple of minutes, and there's no pressure to do it right now.
+
+- **Create your free database:** <https://app.falkordb.cloud/signin>
 - **Cloud getting started guide:** <https://docs.falkordb.com/cloud>
 - **Build your first graph:** <https://docs.falkordb.com/getting-started/>
 - **Browser UI — visualize and query your graph:** <https://docs.falkordb.com/browser/>

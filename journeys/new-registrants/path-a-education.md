@@ -14,7 +14,7 @@
 
 ## Path A — Step 1 — Day 1
 
-**Goal:** welcome the contact and give them the fastest path to self-serve setup.
+**Goal:** welcome the contact, give them the fastest path to self-serve setup, and gently encourage them to spin up a free database if they'd like to.
 
 ### Version A — "Getting started" (link-list framing)
 
@@ -30,6 +30,10 @@ Welcome to FalkorDB! We're really glad to have you on board. We're here to help 
 4. **Browser UI — visualize and query your graph:** <https://docs.falkordb.com/browser/>
 5. **Cypher cheat sheet:** <https://docs.falkordb.com/cypher/>
 
+Whenever you're ready, the best way to get a feel for FalkorDB is to spin up a **free database** — it takes a couple of minutes and there's no cost to try. No pressure at all; it's there whenever you'd like to explore.
+
+**Create your free database →** <https://app.falkordb.cloud/signin>
+
 Curious about the Cloud tiers? You can read through them here: **Cloud plans and pricing:** {Cloud pricing link}.
 
 Regards,
@@ -42,13 +46,15 @@ The FalkorDB Team
 
 Hi {First Name},
 
-Welcome to FalkorDB — we're excited to have you with us! The fastest way to see what FalkorDB can do is to run a query against your own graph, and most teams get there in under 10 minutes.
+Welcome to FalkorDB — we're excited to have you with us! The fastest way to see what FalkorDB can do is to spin up a **free database** and run a query against your own graph. It's free to try, takes a couple of minutes, and most teams get to their first query in under 10.
 
-**Start here →** <https://docs.falkordb.com/getting-started/>
+**Create your free database →** <https://app.falkordb.cloud/signin>
+
+Then follow the quick walkthrough to build your first graph: <https://docs.falkordb.com/getting-started/>
 
 Once your database is up, the **[Browser UI](https://docs.falkordb.com/browser/)** lets you visualize and query the graph without writing any client code.
 
-If you'd rather just open the console: <https://app.falkordb.cloud/signin>
+Of course, there's no rush — it's there whenever you'd like to explore.
 
 Want to learn about the Cloud tiers? Here's an overview: **Cloud plans and pricing:** {Cloud pricing link}
 
