@@ -48,9 +48,9 @@ Welcome to FalkorDB. If you're evaluating FalkorDB Cloud, these are the best pla
 2. **Follow the getting-started guide:** <https://docs.falkordb.com/cloud>
 3. **Build your first graph:** <https://docs.falkordb.com/getting-started/>
 
-You can also review Cloud plans and pricing here: {Cloud pricing link}.
+You can also review Cloud plans and pricing here: <https://www.falkordb.com/plans/>.
 
-If your team needs a dedicated or Enterprise deployment, we'll add that path here: {Enterprise deployment link}.
+If your team needs a dedicated or Enterprise deployment, we'll add that path here: <https://www.falkordb.com/contact-us/>.
 
 Regards,
 
@@ -78,8 +78,8 @@ Run through this before pushing the HTML email live in HubSpot:
 - [ ] YouTube → <https://www.youtube.com/@FalkorDB>
 - [ ] LinkedIn → <https://www.linkedin.com/company/falkordb>
 - [ ] X → <https://x.com/falkordb>
-- [ ] `{Cloud pricing link}` placeholder replaced with the final URL.
-- [ ] `{Enterprise deployment link}` placeholder replaced with the final URL.
+- [x] `<https://www.falkordb.com/plans/>` replaced with the final URL: <https://www.falkordb.com/plans/>
+- [x] `<https://www.falkordb.com/contact-us/>` replaced with the final URL: <https://www.falkordb.com/contact-us/>
 - [ ] Footer "View in browser" and "Unsubscribe" links wired up.
 
 **Content**
@@ -243,7 +243,7 @@ If you're exploring GraphRAG, start here:
 - GraphRAG SDK docs: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
 - FalkorDB use cases: <https://docs.falkordb.com/>
 
-For Cloud, you can compare available options here: {Cloud pricing link}. For Enterprise deployment, use this path: {Enterprise deployment link}.
+For Cloud, you can compare available options here: <https://www.falkordb.com/plans/>. For Enterprise deployment, use this path: <https://www.falkordb.com/contact-us/>.
 
 Regards,
 
@@ -263,8 +263,8 @@ This is the last email in this short getting-started series. Here are the main F
 
 - Cloud console: <https://app.falkordb.cloud/signin>
 - Documentation: <https://docs.falkordb.com/>
-- Cloud plans and pricing: {Cloud pricing link}
-- Enterprise deployment: {Enterprise deployment link}
+- Cloud plans and pricing: <https://www.falkordb.com/plans/>
+- Enterprise deployment: <https://www.falkordb.com/contact-us/>
 - Community forum: <https://github.com/orgs/FalkorDB/discussions>
 
 No need to reply unless we can help with something specific.
