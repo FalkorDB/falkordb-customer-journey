@@ -38,8 +38,22 @@ Notes:
 
 ## Buttons
 
-- Primary: fill `#7466FF`, white text, rounded corners.
-- Secondary: white fill, `#7466FF` border and text.
+### Primary button (main call to action)
+
+- Text color: white `#FFFFFF`
+- Background: brand purple `#7466FF`
+- Hover background: `#5a4fd6`
+- Font: 14, bold, sans serif
+- Corner radius: 6px
+- Padding: about 12px top and bottom, 30px left and right
+- Day 1 example: label "Start your free trial", link https://app.falkordb.cloud/signin
+
+### Secondary button
+
+- Text and border: brand purple `#7466FF`
+- Background: white `#FFFFFF`
+- Same font, radius, and padding as the primary button
+- Day 1 example: label "Take me to the docs", link https://docs.falkordb.com/getting-started/
 
 ## Icons and badges
 
