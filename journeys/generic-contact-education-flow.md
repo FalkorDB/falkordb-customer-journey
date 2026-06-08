@@ -34,7 +34,7 @@ This is a generic education flow sent to contacts before we know whether they ha
 
 **Version documented:** Version A (CS-oriented replacement applied)
 
-**Rendered HTML email:** registrants receive the designed HTML version in [`journeys/templates/welcome-day1.html`](templates/welcome-day1.html). The Markdown copy below is the source of truth for wording; the HTML file is the visual layout (FalkorDB-branded, modeled on the MongoDB Atlas welcome email).
+**Format:** the Markdown copy below is the source of truth for the email wording.
 
 **Subject:** Getting started with FalkorDB Cloud
 
