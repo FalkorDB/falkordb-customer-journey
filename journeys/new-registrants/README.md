@@ -1,63 +1,122 @@
-# New Registrants — Generic Education Flow
+# New Registrants Education Flow
 
-This directory documents the journey for **new registrants** in HubSpot: contacts that have just registered (or are pending registration) and for whom we do **not** yet know whether they created a FalkorDB database.
+> **Status:** 🟢 Proposed, for review. Replaces the [legacy flow](legacy-flow.md).
 
-**Audience:** every new HubSpot contact entering the registration / pending-registration list. No database ownership or activity signal is available at this stage.
+**Audience:** every new registrant in HubSpot. We send this before we know whether the contact created a FalkorDB database.
 
-**Purpose:** generic, customer-success-led education — get the contact set up, point them at the docs and the Cloud console, and surface pricing / Enterprise options. This is *not* a database-activation journey; DB-aware journeys (Free, Paid, Churn) pick up after this flow.
+**Purpose:** customer success education. Help the contact start a free trial, find the docs, and run a first query. No sales push.
+
+**Cadence:** Day 1. Then Day 3 if no reply. Then Day 6 if no reply.
 
 **HubSpot source of truth:** [registration sequence](https://app-eu1.hubspot.com/sequences/144055056/sequence/248070596/edit?page=2)
 
----
-
-## Files in this folder
-
-| File | What it is | Status |
-|---|---|---|
-| [`legacy-flow.md`](legacy-flow.md) | The current HubSpot 4-step sequence (Days 1 / 3 / 6 / 9), all Version A only. Sales-flavored. | 🟠 Legacy — active in HubSpot today, planned for replacement |
-| [`path-a-education.md`](path-a-education.md) | **New flow, Path A — Education.** 3 steps (Days 1 / 3 / 6), CS-led, documentation-first. Each step has Version A and Version B for email-level A/B testing. | 🟢 New — proposed, for review |
-| [`path-b-use-case.md`](path-b-use-case.md) | **New flow, Path B — Use case.** 3 steps (Days 1 / 3 / 6), CS-led, use-case-focused. One version per step (no within-step A/B). | 🟢 New — proposed, for review |
+**Why three steps:** the database aware journeys (Free, Paid, Churn) pick up after this flow. This generic flow stays short and ends before those journeys start.
 
 ---
 
-## New flow — A/B test design
+## Conventions for this flow
 
-The legacy 4-step sales-flavored sequence is being replaced with a **3-step CS-oriented flow** that runs as two parallel paths to test the messaging strategy.
-
-**Cadence (both paths):** Day 1 → Day 3 (if no reply) → Day 6 (if no reply).
-
-**Why 3 steps:** subsequent journeys (Free DB creation, Paid DB) will pick up engagement from here, so this generic flow should stay short and end before the user-specific journeys start.
-
-### Test design
-
-| | Path A — Education | Path B — Use case |
-|---|---|---|
-| **Hypothesis** | Contacts activate faster when given a clear, low-pressure path to docs and Cloud setup. | Contacts engage more when they see concrete things they can build with FalkorDB. |
-| **Audience split** | 50% of new registrants | 50% of new registrants |
-| **Primary metric** | Clicks to docs / Cloud console | Clicks to use-case docs (GraphRAG, Knowledge Graph, Recommendations, Fraud, Infra, Supply Chain) |
-| **Secondary metrics** | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks | DB creation, replies, Cloud-pricing-page clicks, Enterprise-link clicks |
-| **Tone** | Customer success, documentation-first, low-pressure, no sales push | Customer success, discovery-driven, "here's what you can build", no sales push |
-| **Shared elements (both paths)** | Educational getting-started links in every email. Cloud pricing shown as an informational link from Day 1; Enterprise deployment link only appears in the later steps (kept out of the Day 1 welcome to avoid a sales tone). |
-
-### Two layers of A/B testing
-
-1. **Path-level (A vs B):** Education vs Use case framing — 50/50 audience split.
-2. **Email-level (Version A vs Version B), Path A only:** each Path A step has two HubSpot variants so we can also test subject line / copy style with the path held fixed. Pick one winner per step before promoting the path. **Path B runs a single version per step** and is compared at the path level only.
-
-### Shared placeholders to confirm before launch
-
-- `{Cloud pricing link}` — final FalkorDB Cloud pricing page URL.
-- `{Enterprise deployment link}` — Enterprise deployment / contact path.
-- `{First Name}` — HubSpot personalization token to confirm.
+- We do not use a first name greeting token. The greeting stays generic.
+- We do not include pricing or Enterprise links in this flow.
+- Wording follows the house style. No dash punctuation. Few commas. Short sentences.
 
 ---
 
-## Operational next steps
+## Step 1 (Day 1): Welcome
 
-1. Confirm the Cloud pricing URL and Enterprise deployment link before launch.
-2. Set the HubSpot personalization token for `{First Name}`.
-3. Split the new-registrants list 50/50 between Path A and Path B in HubSpot.
-4. Run the test for at least 4 weeks (or until ~1,000 contacts per arm).
-5. Compare on primary metric first, then on DB-creation rate.
-6. The winning path becomes the default; the losing path stays documented here for reference.
-7. After this flow, contacts move into the **Free DB Creation** or **Paid DB** journeys (designed next).
+**Goal:** welcome the contact. Point them to the free trial. Give the fastest path to a first query.
+
+**Subject:** Welcome to FalkorDB. Start your free trial.
+
+Welcome to FalkorDB. FalkorDB Cloud is your fully managed graph database. It is built for ultra-low latency and a small memory footprint. We handle scale, security, and operations so you can focus on building.
+
+**What's next**
+
+1. **Start with a free trial.** Spin up a free FalkorDB instance in a couple of minutes at no cost. Move up to a dedicated instance when you are ready for testing, prototypes, or production.
+2. **Connect your way.** Open the built-in Browser UI to start querying right away. You can also copy your connection details from the Connectivity tab and connect from any official FalkorDB client library.
+3. **Run your first query.** Follow the quick walkthrough to build your first graph and run your first Cypher query. Most teams get there in about 10 minutes.
+
+**Start your free trial:** <https://app.falkordb.cloud/signin>
+
+**Build faster with these resources**
+
+- **Explore visually.** Query and inspect your graph in the FalkorDB Browser UI: <https://docs.falkordb.com/browser/>
+- **Learn the graph model.** See how nodes, labels, relationships, and paths fit together in the labeled property graph: <https://docs.falkordb.com/datatypes.html>
+- **Coming from SQL?** See how relational concepts map to Cypher: <https://docs.falkordb.com/cypher/>
+- **Build your knowledge graph.** Turn raw documents into cited, AI-ready answers with GraphRAG: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- **Level up.** Short getting-started guides for your first graph and first query: <https://docs.falkordb.com/getting-started/>
+
+**Take me to the docs:** <https://docs.falkordb.com/getting-started/>
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+## Step 2 (Day 3, if no reply): Get to your first query
+
+**Goal:** help contacts who have not replied move from sign up to first query.
+
+**Subject:** A short path to your first FalkorDB query
+
+Still getting set up? Here is a short path that most teams finish in under 15 minutes.
+
+1. Sign in to the Cloud console.
+2. Start a free trial instance.
+3. Connect with a client library or open the Browser UI.
+4. Run your first Cypher query.
+
+**Pick your client library**
+
+FalkorDB has first class clients for Python, Node.js, Java, Go, Rust, C#, and PHP: <https://docs.falkordb.com/getting-started/clients.html>
+
+**Helpful docs**
+
+- Cloud getting started: <https://docs.falkordb.com/cloud>
+- Cypher reference: <https://docs.falkordb.com/cypher/>
+- Browser UI: <https://docs.falkordb.com/browser/>
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+## Step 3 (Day 6, if no reply): What you can build
+
+**Goal:** show a few common use cases. Close the series politely. Leave one resource list.
+
+**Subject:** What teams build on FalkorDB
+
+Thanks for spending the week with FalkorDB. This is the last email in this short series. Teams use FalkorDB for many graph workloads.
+
+- **GraphRAG and AI.** Knowledge-graph-backed RAG with the GraphRAG SDK.
+- **Knowledge graphs.** Connect entities, concepts, and facts for search, chatbots, and discovery.
+- **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
+- **Fraud detection.** Surface fraud rings by shared devices, phones, addresses, and IPs.
+- **Infrastructure mapping.** Blast radius and dependency analysis for services and databases.
+- **Supply chain.** Model suppliers, products, warehouses, and single-source-of-supply risk.
+
+**All your resources in one place**
+
+- Cloud console: <https://app.falkordb.cloud/signin>
+- Documentation: <https://docs.falkordb.com/>
+- Cypher reference: <https://docs.falkordb.com/cypher/>
+- Client libraries: <https://docs.falkordb.com/getting-started/clients.html>
+- Browser UI: <https://docs.falkordb.com/browser/>
+- GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- Community discussions: <https://github.com/orgs/FalkorDB/discussions>
+- Discord: <https://discord.gg/AEHAVvH5GU>
+
+No need to reply unless we can help with something specific.
+
+Regards,
+
+The FalkorDB Team
+
+---
+
+## After this flow
+
+Contacts move into the database aware journeys (Free DB, Paid DB, Churn) based on what happens in their account.

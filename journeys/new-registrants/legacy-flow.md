@@ -1,6 +1,6 @@
 # New Registrants — Legacy Flow (As-Is in HubSpot)
 
-> **Status:** 🟠 **Legacy** — this is the sequence currently running in HubSpot for new registrants. It is planned for replacement by the new 3-step A/B test ([Path A](path-a-education.md) / [Path B](path-b-use-case.md)). Documented here for reference and so we know what we're replacing.
+> **Status:** 🟠 **Legacy.** This is the sequence currently running in HubSpot for new registrants. It is planned for replacement by the new 3 step education flow in the [folder README](README.md). Documented here for reference.
 
 **Audience:** new HubSpot contacts in the registration / pending-registration list. Database ownership/activity is unknown at this stage.
 

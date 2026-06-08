@@ -13,7 +13,7 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | # | Journey | One-line description | Status | Detailed map |
 |---|---|---|---|---|
-| 1 | **New Registrants — Generic Education Flow** | The generic HubSpot education flow sent to **new registrants** (and pending-registration contacts) before we know whether they have a database. Legacy 4-step flow is being replaced by a new 3-step A/B test. | 🟠 Legacy active · 🟢 New flow proposed | [`journeys/new-registrants/`](journeys/new-registrants/README.md) |
+| 1 | **New Registrants — Generic Education Flow** | The generic HubSpot education flow sent to **new registrants** (and pending-registration contacts) before we know whether they have a database. The legacy 4 step flow is being replaced by a new consolidated 3 step flow. | 🟠 Legacy active · 🟢 New flow proposed | [`journeys/new-registrants/`](journeys/new-registrants/README.md) |
 | 2 | **All-User Journey (Common Core)** | The shared backbone every user sees regardless of plan — signup → first DB → first query → onboarding education → deletion follow-up. The trunk that the Free and Paid journeys branch off. | ⚪ Planned | _TBD_ |
 | 3 | **Free User Journey** | Free-tier active path: activation, education, nudges toward a real workload, upgrade triggers when bumping into Free limits, re-engagement when going cold. | ⚪ Planned | _TBD_ |
 | 4 | **Paid User Journey** | Paid-tier active path: production readiness (replication, indexing, backups), expansion (more DBs, larger tiers, GraphRAG), health check-ins, renewal & retention, downgrade-risk handling. | ⚪ Planned | _TBD_ |
@@ -44,14 +44,13 @@ Each journey is summarized here at a high level; detailed maps live in their own
 
 | Variant | Status | File |
 |---|---|---|
-| **Legacy flow** — current HubSpot 4-step sequence (Days 1 / 3 / 6 / 9), Version A only, sales-flavored | 🟠 Active in HubSpot, planned for replacement | [`legacy-flow.md`](journeys/new-registrants/legacy-flow.md) |
-| **New flow — Path A — Education** — 3 steps (Days 1 / 3 / 6), CS-led, documentation-first, Version A + B per step | 🟢 Proposed, for review | [`path-a-education.md`](journeys/new-registrants/path-a-education.md) |
-| **New flow — Path B — Use Case** — 3 steps (Days 1 / 3 / 6), CS-led, discovery-driven, Version A + B per step | 🟢 Proposed, for review | [`path-b-use-case.md`](journeys/new-registrants/path-b-use-case.md) |
+| **Legacy flow.** Current HubSpot 4 step sequence (Days 1 / 3 / 6 / 9), Version A only | 🟠 Active in HubSpot, planned for replacement | [`legacy-flow.md`](journeys/new-registrants/legacy-flow.md) |
+| **New flow.** Consolidated 3 step education flow (Days 1 / 3 / 6), customer success led | 🟢 Proposed, for review | [`README.md`](journeys/new-registrants/README.md) |
 
 **Observations / gaps:**
 - The 4 legacy steps (Days 1 / 3 / 6 / 9) are documented; any remaining HubSpot sequence steps after Day 9 still need to be captured.
 - This flow is sent before database ownership/activity is known, so it stays generic and educational.
-- The legacy copy is too sales/meeting-oriented. The new flow runs as a path-level A/B test (Path A vs Path B) with a second within-step A/B test (Version A vs Version B) inside each path.
+- The legacy copy is too sales oriented. The new flow is a single consolidated 3 step education flow.
 - The DB-aware customer journey is mapped separately once we know whether the contact created a Free DB, Paid DB, or no DB.
 - Resources, Cloud pricing, Cloud product information, and Enterprise deployment options still need final URLs/CTAs tied to each step.
 
