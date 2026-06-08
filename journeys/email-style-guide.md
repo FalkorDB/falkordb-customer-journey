@@ -59,3 +59,8 @@ Notes:
 
 - Tint icons to the brand purple `#7466FF`.
 - Number badges and icon tiles use the `#EEEBFF` background.
+
+## Channel notes
+
+- **Marketing Email** (drag and drop): supports Button modules, colored and sized Dividers, and icon images. Use it for the full styled look.
+- **Sales Sequence Email**: plain rich text only. It supports text sizes, bold, color, links, numbered lists, and a basic gray horizontal line. It does not support background buttons, colored dividers, or pasted HTML. For a call to action use a bold brand color text link. For a divider use Insert then Horizontal line.
