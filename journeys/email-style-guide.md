@@ -17,7 +17,7 @@ Shared design tokens for the customer journey emails and pages. Use these on eve
 
 ## Font
 
-- Family: sans serif. Arial in the original HTML. The HubSpot default sans serif is fine.
+- Family: sans-serif for all journey customer emails. Use the generic `sans-serif` so each email client renders its default sans-serif. Do not use serif.
 - HubSpot size set available: 11, 12, 14, 18, 24, 36. Do not use 36.
 
 ## Sizes by element
