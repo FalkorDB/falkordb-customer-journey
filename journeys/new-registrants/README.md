@@ -68,12 +68,14 @@ Graphs make connected data simple to model and fast to query. Here is a quick pr
 - **Relationships are first class.** They connect nodes directly, so fast traversals replace heavy joins.
 - **Cypher reads like a picture.** You describe the pattern you want and FalkorDB finds it. Explore Cypher: <https://docs.falkordb.com/cypher/>
 
+**Built for real time.** FalkorDB keeps queries fast as your graph grows, with low latency and a small memory footprint even under heavy concurrent load. See the benchmarks: <https://benchmark.falkordb.com/>
+
 **Start your free trial:** <https://app.falkordb.cloud/signin>
 
 **What teams build**
 
 - **GraphRAG and AI.** Retrieval grounded in a knowledge graph, using the GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
-- **Fraud detection.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time.
+- **Fraud and security.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time. See the security case study: <https://www.falkordb.com/case-studies/securin-falkordb-graph-case-study/>
 - **Network and infrastructure.** A Fortune 500 network provider models more than 60,000 topology graphs for live monitoring across US, EU, and SG.
 - **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
 
