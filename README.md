@@ -46,6 +46,12 @@ Step-by-step guides and reference material organized by learning stage:
 | [Wait for Replication](resources/wait-for-replication.md) | Use `WAIT` to ensure write durability before reading from replicas |
 | [Use Case Examples](resources/use-case-examples.md) | Real-world graph modeling patterns — social networks, recommendations, and more |
 
+### Production & Operations
+
+| Resource | Description |
+|----------|-------------|
+| [Production Best Practices](resources/production-best-practices.md) | Indexing, read/write separation, sharding writes across graphs, naming, ACL roles, bulk loading, and memory headroom |
+
 ### Advanced
 
 | Resource | Description |
