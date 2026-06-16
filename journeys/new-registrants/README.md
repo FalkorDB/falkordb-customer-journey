@@ -92,11 +92,14 @@ This is the last email in this short series. Here are a few best practices to he
 
 **Best practices**
 
-- **Index what you query on.** Add an index for every property you MATCH or MERGE on to turn full scans into fast lookups. Indexing guide: <https://docs.falkordb.com/cypher/indexing/>
-- **Use parameterized queries.** Pass values as parameters for safety and faster repeated queries. Cypher reference: <https://docs.falkordb.com/cypher/>
-- **Separate reads from writes.** Send reads to replicas to free the primary for writes and scale throughput.
-- **Batch your writes.** Load data with UNWIND batches or the bulk loader instead of row by row. Bulk loader: <https://docs.falkordb.com/integration/bulk-loader>
-- **Leave memory headroom.** Keep usage under about 75 percent so queries and saves have room to work.
+- **Index what you MATCH or MERGE on.** It turns full label scans into direct lookups and speeds up writes. Indexing guide: <https://docs.falkordb.com/cypher/indexing/>
+- **Send reads to replicas.** Use GRAPH.RO_QUERY so the primary stays free for writes and reads scale out.
+- **Shard writes across graphs.** Writes to one graph are serialized, so split work across graphs to write in parallel.
+- **Keep writes short.** A long write holds the graph and stalls everything queued behind it.
+- **Use a graph naming convention.** Prefixes enable access scoping, sharding, and per tenant isolation.
+- **Lock down access with ACL roles.** Read only or read write per graph prefix protects your data.
+- **Bulk load with the right tool.** The bulk loader and batched UNWIND beat row by row CREATE. Bulk loader: <https://docs.falkordb.com/integration/bulk-loader>
+- **Keep memory under about 75 percent.** It leaves headroom for query memory and save forks.
 
 **Start your free trial:** <https://app.falkordb.cloud/signin> · **Read the docs:** <https://docs.falkordb.com/getting-started/>
 

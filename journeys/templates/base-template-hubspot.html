@@ -1,0 +1,187 @@
+<!--
+  templateType: email
+  isAvailableForNewContent: true
+  label: FalkorDB Journey Base
+  ============================================================
+  REUSABLE BASE TEMPLATE for FalkorDB customer journey emails.
+  Header and footer are fixed. Swap only the CONTENT AREA.
+  HubSpot-safe: table layout, inline CSS, no hotlinked icons8
+  URLs with raw &, native lists, required HubL tokens.
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <title>FalkorDB</title>
+  <!--[if mso]>
+  <style>table,td,div,p,a,h1,ul,li{font-family:sans-serif !important;}</style>
+  <![endif]-->
+  <style>
+    body{margin:0;padding:0;background:#F5F5F5;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+    table{border-collapse:collapse;}
+    img{border:0;line-height:100%;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;}
+    a{color:#7466FF;text-decoration:none;}
+    .btn:hover{background:#5a4fd6 !important;}
+    @media only screen and (max-width:600px){
+      .container{width:100% !important;}
+      .px{padding-left:24px !important;padding-right:24px !important;}
+    }
+  </style>
+  {{ standard_header_includes }}
+</head>
+<body style="margin:0;padding:0;background:#F5F5F5;">
+
+  <!-- ===================== PREHEADER (edit per email) ===================== -->
+  <div style="display:none;font-size:1px;color:#F5F5F5;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
+    Preheader text goes here.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F5F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+
+          <!-- ===================== HEADER (reusable, do not edit) ===================== -->
+          <tr>
+            <td style="background:#7466FF;padding:24px 32px;" class="px">
+              <span style="font-family:sans-serif;font-size:18px;font-weight:bold;color:#FFFFFF;letter-spacing:0.2px;">FalkorDB</span>
+            </td>
+          </tr>
+
+          <!-- ===================== CONTENT AREA START (swap per email) ===================== -->
+
+          <!-- Hero: heading + intro -->
+          <tr>
+            <td style="padding:32px 32px 8px 32px;" class="px">
+              <h1 style="margin:0 0 12px 0;font-family:sans-serif;font-size:18px;line-height:1.3;color:#191919;font-weight:bold;">
+                Heading goes here
+              </h1>
+              <p style="margin:0;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                Intro paragraph goes here. Keep it short. No dashes. Few commas.
+              </p>
+            </td>
+          </tr>
+
+          <!-- Section label + bullet list -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;" class="px">
+              <p style="margin:0 0 14px 0;font-family:sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#7466FF;font-weight:bold;">
+                Section label
+              </p>
+              <ul style="margin:0;padding-left:22px;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Bold lead in.</strong> Supporting sentence with a <a href="https://docs.falkordb.com/" style="color:#7466FF;font-weight:bold;text-decoration:none;">purple link</a>.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Bold lead in.</strong> Supporting sentence.</li>
+                <li><strong style="color:#191919;">Bold lead in.</strong> Supporting sentence.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <!-- Primary button -->
+          <tr>
+            <td align="left" style="padding:24px 32px 8px 32px;" class="px">
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://app.falkordb.cloud/signin" style="height:46px;v-text-anchor:middle;width:220px;" arcsize="13%" strokecolor="#7466FF" fillcolor="#7466FF">
+                <w:anchorlock/>
+                <center style="color:#ffffff;font-family:sans-serif;font-size:14px;font-weight:bold;">Primary button</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-- -->
+              <a class="btn" href="https://app.falkordb.cloud/signin" style="display:inline-block;background:#7466FF;color:#FFFFFF;font-family:sans-serif;font-size:14px;font-weight:bold;line-height:46px;text-align:center;text-decoration:none;border-radius:6px;padding:0 30px;">
+                Primary button
+              </a>
+              <!--<![endif]-->
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:16px 32px;" class="px">
+              <div style="border-top:1px solid #E5E7EB;font-size:0;line-height:0;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <!-- Section label + second list -->
+          <tr>
+            <td style="padding:0 32px 8px 32px;" class="px">
+              <p style="margin:0 0 14px 0;font-family:sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#7466FF;font-weight:bold;">
+                Second section label
+              </p>
+              <ul style="margin:0;padding-left:22px;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Item.</strong> Supporting sentence with a <a href="https://docs.falkordb.com/" style="color:#7466FF;font-weight:bold;text-decoration:none;">link</a>.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Item.</strong> Supporting sentence.</li>
+                <li><strong style="color:#191919;">Item.</strong> Supporting sentence.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <!-- Secondary link button (outline) -->
+          <tr>
+            <td align="left" style="padding:20px 32px 32px 32px;" class="px">
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://docs.falkordb.com/getting-started/" style="height:46px;v-text-anchor:middle;width:210px;" arcsize="13%" strokecolor="#7466FF" fillcolor="#FFFFFF">
+                <w:anchorlock/>
+                <center style="color:#7466FF;font-family:sans-serif;font-size:14px;font-weight:bold;">Secondary button</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-- -->
+              <a href="https://docs.falkordb.com/getting-started/" style="display:inline-block;background:#FFFFFF;color:#7466FF;font-family:sans-serif;font-size:14px;font-weight:bold;line-height:44px;text-align:center;text-decoration:none;border:2px solid #7466FF;border-radius:6px;padding:0 28px;">
+                Secondary button
+              </a>
+              <!--<![endif]-->
+            </td>
+          </tr>
+
+          <!-- ===================== CONTENT AREA END ===================== -->
+
+        </table>
+
+        <!-- ===================== FOOTER (reusable, do not edit) ===================== -->
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+          <tr>
+            <td style="padding:24px 32px 8px 32px;text-align:center;" class="px">
+              <!--
+                SOCIAL ICONS: upload these to the HubSpot File Manager and replace
+                the src values with the HubSpot-hosted URLs. Do NOT hotlink icons8
+                with raw & query params, HubSpot mangles them.
+                Local source files: scratch/example-emails/images/{discord,youtube,linkedin,x}.png
+              -->
+              <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td style="padding:0 8px;">
+                    <a href="https://discord.gg/AEHAVvH5GU" target="_blank"><img src="REPLACE_WITH_HUBSPOT_URL/discord.png" width="22" height="22" alt="Discord" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.youtube.com/@FalkorDB" target="_blank"><img src="REPLACE_WITH_HUBSPOT_URL/youtube.png" width="22" height="22" alt="YouTube" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.linkedin.com/company/falkordb" target="_blank"><img src="REPLACE_WITH_HUBSPOT_URL/linkedin.png" width="22" height="22" alt="LinkedIn" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://x.com/falkordb" target="_blank"><img src="REPLACE_WITH_HUBSPOT_URL/x.png" width="22" height="22" alt="X" style="display:block;"></a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px 24px 32px;text-align:center;font-family:sans-serif;font-size:11px;line-height:1.6;color:#6B7280;" class="px">
+              {{ site_settings.company_name }}<br>
+              {{ site_settings.company_street_address_1 }}, {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }} {{ site_settings.company_country }}<br><br>
+              <a href="{{ view_as_page_url }}" style="color:#6B7280;text-decoration:underline;">View in browser</a> &nbsp;&middot;&nbsp;
+              <a href="{{ unsubscribe_link }}" style="color:#6B7280;text-decoration:underline;">Unsubscribe</a>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+  {{ standard_footer_includes }}
+</body>
+</html>

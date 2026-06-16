@@ -1,0 +1,175 @@
+<!--
+  templateType: email
+  isAvailableForNewContent: true
+  label: FalkorDB Day 6 Best Practices
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <title>A few best practices for building on FalkorDB</title>
+  <!--[if mso]>
+  <style>table,td,div,p,a,h1,ul,li{font-family:sans-serif !important;}</style>
+  <![endif]-->
+  <style>
+    body{margin:0;padding:0;background:#F5F5F5;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+    table{border-collapse:collapse;}
+    img{border:0;line-height:100%;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;}
+    a{color:#7466FF;text-decoration:none;}
+    .btn:hover{background:#5a4fd6 !important;}
+    @media only screen and (max-width:600px){
+      .container{width:100% !important;}
+      .px{padding-left:24px !important;padding-right:24px !important;}
+    }
+  </style>
+  {{ standard_header_includes }}
+</head>
+<body style="margin:0;padding:0;background:#F5F5F5;">
+
+  <!-- Preheader (hidden) -->
+  <div style="display:none;font-size:1px;color:#F5F5F5;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
+    Set yourself up for fast, reliable graphs.
+  </div>
+
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F5F5F5;">
+    <tr>
+      <td align="center" style="padding:24px 12px;">
+
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#FFFFFF;border-radius:12px;overflow:hidden;">
+
+          <!-- Brand header -->
+          <tr>
+            <td style="background:#7466FF;padding:24px 32px;" class="px">
+              <span style="font-family:sans-serif;font-size:18px;font-weight:bold;color:#FFFFFF;letter-spacing:0.2px;">FalkorDB</span>
+            </td>
+          </tr>
+
+          <!-- Hero -->
+          <tr>
+            <td style="padding:32px 32px 8px 32px;" class="px">
+              <h1 style="margin:0 0 12px 0;font-family:sans-serif;font-size:18px;line-height:1.3;color:#191919;font-weight:bold;">
+                A few best practices
+              </h1>
+              {% content_attribute "email_body" %}
+              <p style="margin:0;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                This is the last email in this short series. Here are a few best practices to help you build fast, reliable applications on FalkorDB.
+              </p>
+              {% end_content_attribute %}
+            </td>
+          </tr>
+
+          <!-- Best practices -->
+          <tr>
+            <td style="padding:24px 32px 0 32px;" class="px">
+              <p style="margin:0 0 14px 0;font-family:sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#7466FF;font-weight:bold;">
+                Best practices
+              </p>
+              <ul style="margin:0;padding-left:22px;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Index what you MATCH or MERGE on.</strong> It turns full label scans into direct lookups and speeds up writes. <a href="https://docs.falkordb.com/cypher/indexing/" style="color:#7466FF;font-weight:bold;text-decoration:none;">Indexing guide</a>.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Send reads to replicas.</strong> Use GRAPH.RO_QUERY so the primary stays free for writes and reads scale out.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Shard writes across graphs.</strong> Writes to one graph are serialized, so split work across graphs to write in parallel.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Keep writes short.</strong> A long write holds the graph and stalls everything queued behind it.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Use a graph naming convention.</strong> Prefixes enable access scoping, sharding, and per tenant isolation.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Lock down access with ACL roles.</strong> Read only or read write per graph prefix protects your data.</li>
+                <li style="margin-bottom:12px;"><strong style="color:#191919;">Bulk load with the right tool.</strong> The bulk loader and batched UNWIND beat row by row CREATE. <a href="https://docs.falkordb.com/integration/bulk-loader" style="color:#7466FF;font-weight:bold;text-decoration:none;">Bulk loader</a>.</li>
+                <li><strong style="color:#191919;">Keep memory under about 75 percent.</strong> It leaves headroom for query memory and save forks.</li>
+              </ul>
+            </td>
+          </tr>
+
+          <!-- Primary CTA -->
+          <tr>
+            <td align="left" style="padding:24px 32px 8px 32px;" class="px">
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://app.falkordb.cloud/signin" style="height:46px;v-text-anchor:middle;width:220px;" arcsize="13%" strokecolor="#7466FF" fillcolor="#7466FF">
+                <w:anchorlock/>
+                <center style="color:#ffffff;font-family:sans-serif;font-size:14px;font-weight:bold;">Start your free trial</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-- -->
+              <a class="btn" href="https://app.falkordb.cloud/signin" style="display:inline-block;background:#7466FF;color:#FFFFFF;font-family:sans-serif;font-size:14px;font-weight:bold;line-height:46px;text-align:center;text-decoration:none;border-radius:6px;padding:0 30px;">
+                Start your free trial
+              </a>
+              <!--<![endif]-->
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:16px 32px;" class="px">
+              <div style="border-top:1px solid #E5E7EB;font-size:0;line-height:0;">&nbsp;</div>
+            </td>
+          </tr>
+
+          <!-- Closing + secondary CTA -->
+          <tr>
+            <td style="padding:0 32px 8px 32px;" class="px">
+              <p style="margin:0 0 16px 0;font-family:sans-serif;font-size:14px;line-height:1.6;color:#374151;">
+                Thanks for spending the week with FalkorDB. No need to reply unless we can help with something specific.
+              </p>
+              <!--[if mso]>
+              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://docs.falkordb.com/getting-started/" style="height:46px;v-text-anchor:middle;width:160px;" arcsize="13%" strokecolor="#7466FF" fillcolor="#FFFFFF">
+                <w:anchorlock/>
+                <center style="color:#7466FF;font-family:sans-serif;font-size:14px;font-weight:bold;">Read the docs</center>
+              </v:roundrect>
+              <![endif]-->
+              <!--[if !mso]><!-- -->
+              <a href="https://docs.falkordb.com/getting-started/" style="display:inline-block;background:#FFFFFF;color:#7466FF;font-family:sans-serif;font-size:14px;font-weight:bold;line-height:44px;text-align:center;text-decoration:none;border:2px solid #7466FF;border-radius:6px;padding:0 28px;">
+                Read the docs
+              </a>
+              <!--<![endif]-->
+            </td>
+          </tr>
+
+          <!-- spacer -->
+          <tr><td style="padding:0 32px 24px 32px;" class="px">&nbsp;</td></tr>
+
+        </table>
+
+        <!-- Footer -->
+        <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;">
+          <tr>
+            <td style="padding:24px 32px 8px 32px;text-align:center;" class="px">
+              <!--
+                SOCIAL ICONS: for production, upload the local PNGs to the HubSpot File Manager and
+                replace each src with the HubSpot hosted URL. Hotlinked icons8 URLs use &amp; so they
+                stay valid HTML. Local files: scratch/example-emails/images/{discord,youtube,linkedin,x}.png
+              -->
+              <table role="presentation" align="center" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+                <tr>
+                  <td style="padding:0 8px;">
+                    <a href="https://discord.gg/AEHAVvH5GU" target="_blank"><img src="https://img.icons8.com/?size=100&amp;id=30998&amp;format=png&amp;color=7466FF" width="22" height="22" alt="Discord" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.youtube.com/@FalkorDB" target="_blank"><img src="https://img.icons8.com/?size=100&amp;id=19318&amp;format=png&amp;color=7466FF" width="22" height="22" alt="YouTube" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://www.linkedin.com/company/falkordb" target="_blank"><img src="https://img.icons8.com/?size=100&amp;id=447&amp;format=png&amp;color=7466FF" width="22" height="22" alt="LinkedIn" style="display:block;"></a>
+                  </td>
+                  <td style="padding:0 8px;">
+                    <a href="https://x.com/falkordb" target="_blank"><img src="https://img.icons8.com/?size=100&amp;id=ClbD5JTFM7FA&amp;format=png&amp;color=7466FF" width="22" height="22" alt="X" style="display:block;"></a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:12px 32px 24px 32px;text-align:center;font-family:sans-serif;font-size:11px;line-height:1.6;color:#6B7280;" class="px">
+              Copyright © 2026 {{ site_settings.company_name }}. All rights reserved.<br>
+              {{ site_settings.company_street_address_1 }}, {{ site_settings.company_city }}, {{ site_settings.company_state }} {{ site_settings.company_zip }} {{ site_settings.company_country }}<br><br>
+              <a href="{{ view_as_page_url }}" style="color:#6B7280;text-decoration:underline;">View in browser</a> &nbsp;&middot;&nbsp;
+              <a href="{{ unsubscribe_link }}" style="color:#6B7280;text-decoration:underline;">Unsubscribe</a>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+  {{ standard_footer_includes }}
+</body>
+</html>
