@@ -62,13 +62,11 @@ The FalkorDB Team
 
 Graphs make connected data simple to model and fast to query. Here is a quick primer, then a few things teams build on FalkorDB.
 
-**Graph thinking in 60 seconds**
+**Why graphs**
 
-- **Nodes are your entities.** A person, a product, a document. Each node carries labels and properties. See the data model: <https://docs.falkordb.com/datatypes.html>
-- **Relationships are first class.** They connect nodes directly, so fast traversals replace heavy joins.
-- **Cypher reads like a picture.** You describe the pattern you want and FalkorDB finds it. Explore Cypher: <https://docs.falkordb.com/cypher/>
-
-**Built for real time.** FalkorDB keeps queries fast as your graph grows, with low latency and a small memory footprint even under heavy concurrent load. See the benchmarks: <https://benchmark.falkordb.com/>
+- **Relationships are stored, not joined.** Traversals stay fast as your connections grow.
+- **One query, many hops.** Ask questions that would span many tables, in a single readable pattern.
+- **Real time at scale.** Update and query the graph live, even under heavy load. See the benchmarks: <https://benchmark.falkordb.com/>
 
 **Start your free trial:** <https://app.falkordb.cloud/signin>
 
