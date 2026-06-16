@@ -68,7 +68,10 @@ From fraud detection to network monitoring to identity systems, teams use the Fa
 
 - **Detecting fraud in real time.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time. See the security case study: <https://www.falkordb.com/case-studies/securin-falkordb-graph-case-study/>
 - **Mapping network topology.** A Fortune 500 network provider models more than 60,000 topology graphs for live monitoring across US, EU, and SG.
-- **Powering identity and access.** A phone manufacturer manages dynamic roles, groups, and hierarchies on a 300 GB cluster, tracing users, roles, and assets for real time authorization and to pinpoint access vulnerabilities.
+- **Build identity management on a real time graph.**
+  - Manage dynamic roles, groups, and hierarchies with a graph based IAM system.
+  - Trace users, roles, and assets for real time authorization, and pinpoint vulnerabilities in complex access structures.
+  - Proven at scale on a 300 GB cluster.
 - **Observing Kubernetes.** An observability platform turns Kubernetes metrics into a live knowledge graph for topology, contextual alerting, and fast search.
 
 **See all use cases:** <https://www.falkordb.com/use-cases/>
