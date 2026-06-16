@@ -82,33 +82,25 @@ The FalkorDB Team
 
 ---
 
-## Step 3 (Day 6, if no reply): What you can build
+## Step 3 (Day 6, if no reply): A few best practices
 
-**Goal:** show a few common use cases. Close the series politely. Leave one resource list.
+**Goal:** close the series with practical best practices that help new users build fast, reliable apps. Leave a short docs link.
 
-**Subject:** What teams build on FalkorDB
+**Subject:** A few best practices for building on FalkorDB
 
-Thanks for spending the week with FalkorDB. This is the last email in this short series. Teams use FalkorDB for many graph workloads.
+This is the last email in this short series. Here are a few best practices to help you build fast, reliable applications on FalkorDB.
 
-- **GraphRAG and AI.** Knowledge-graph-backed RAG with the GraphRAG SDK.
-- **Knowledge graphs.** Connect entities, concepts, and facts for search, chatbots, and discovery.
-- **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
-- **Fraud detection.** Surface fraud rings by shared devices, phones, addresses, and IPs.
-- **Infrastructure mapping.** Blast radius and dependency analysis for services and databases.
-- **Supply chain.** Model suppliers, products, warehouses, and single-source-of-supply risk.
+**Best practices**
 
-**All your resources in one place**
+- **Index what you query on.** Add an index for every property you MATCH or MERGE on to turn full scans into fast lookups. Indexing guide: <https://docs.falkordb.com/cypher/indexing/>
+- **Use parameterized queries.** Pass values as parameters for safety and faster repeated queries. Cypher reference: <https://docs.falkordb.com/cypher/>
+- **Separate reads from writes.** Send reads to replicas to free the primary for writes and scale throughput.
+- **Batch your writes.** Load data with UNWIND batches or the bulk loader instead of row by row. Bulk loader: <https://docs.falkordb.com/integration/bulk-loader>
+- **Leave memory headroom.** Keep usage under about 75 percent so queries and saves have room to work.
 
-- Cloud console: <https://app.falkordb.cloud/signin>
-- Documentation: <https://docs.falkordb.com/>
-- Cypher reference: <https://docs.falkordb.com/cypher/>
-- Client libraries: <https://docs.falkordb.com/getting-started/clients.html>
-- Browser UI: <https://docs.falkordb.com/browser/>
-- GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
-- Community discussions: <https://github.com/orgs/FalkorDB/discussions>
-- Discord: <https://discord.gg/AEHAVvH5GU>
+**Start your free trial:** <https://app.falkordb.cloud/signin> · **Read the docs:** <https://docs.falkordb.com/getting-started/>
 
-No need to reply unless we can help with something specific.
+Thanks for spending the week with FalkorDB. No need to reply unless we can help with something specific.
 
 Regards,
 
