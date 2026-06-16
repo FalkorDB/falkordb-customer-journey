@@ -14,5 +14,5 @@ The reusable header, footer, and body skeleton is in [`../../templates/base-temp
 
 - Each file is a coded email template. In HubSpot, use Design Manager, create a coded Email file, and paste the contents.
 - Required HubL tokens are already included: `standard_header_includes`, `standard_footer_includes`, `site_settings.company_name` and address, `unsubscribe_link`, `view_as_page_url`, and a `content_attribute "email_body"` region. See [`../../hubspot-coded-email-guide.md`](../../hubspot-coded-email-guide.md).
-- Icons are referenced from icons8 by URL. For production, upload the brand tinted PNGs to the HubSpot File Manager and swap the `src` values. The PNG sources are kept locally, not in this repo.
+- Icons are MIT and CC0 (Lucide and Simple Icons), committed under [`images/`](images/) and referenced from the jsDelivr GitHub CDN. See [`images/NOTICE.md`](images/NOTICE.md). You can optionally upload them to the HubSpot File Manager and swap the `src` values.
 - The subject line is set in the HubSpot email settings, not in the HTML.
