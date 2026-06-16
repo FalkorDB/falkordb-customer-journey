@@ -54,30 +54,24 @@ The FalkorDB Team
 
 ---
 
-## Step 2 (Day 3, if no reply): Think in graphs
+## Step 2 (Day 3, if no reply): See what teams build
 
-**Goal:** teach the contact how graphs work and show a few things they can build, without pressure.
+**Goal:** show what FalkorDB customers build with graphs, with proof points and links. Use cases only.
 
-**Subject:** Think in graphs. Here is what you can build.
+**Subject:** See what teams build on FalkorDB
 
-Graphs make connected data simple to model and fast to query. Here is a quick primer, then a few things teams build on FalkorDB.
-
-**Why graphs**
-
-- **Relationships are stored, not joined.** Traversals stay fast as your connections grow.
-- **One query, many hops.** Ask questions that would span many tables, in a single readable pattern.
-- **Real time at scale.** Update and query the graph live, even under heavy load. See the benchmarks: <https://benchmark.falkordb.com/>
+From fraud detection to network monitoring to identity systems, teams use the FalkorDB graph engine to power real time, connected applications. They pick FalkorDB for speed at scale. See the benchmarks: <https://benchmark.falkordb.com/>
 
 **Start your free trial:** <https://app.falkordb.cloud/signin>
 
-**What teams build**
+**What FalkorDB customers build**
 
-- **GraphRAG and AI.** Retrieval grounded in a knowledge graph, using the GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
-- **Fraud and security.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time. See the security case study: <https://www.falkordb.com/case-studies/securin-falkordb-graph-case-study/>
-- **Network and infrastructure.** A Fortune 500 network provider models more than 60,000 topology graphs for live monitoring across US, EU, and SG.
-- **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
+- **Detecting fraud in real time.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time. See the security case study: <https://www.falkordb.com/case-studies/securin-falkordb-graph-case-study/>
+- **Mapping network topology.** A Fortune 500 network provider models more than 60,000 topology graphs for live monitoring across US, EU, and SG.
+- **Powering identity and access.** A phone manufacturer manages dynamic roles, groups, and hierarchies on a 300 GB cluster, tracing users, roles, and assets for real time authorization and to pinpoint access vulnerabilities.
+- **Observing Kubernetes.** An observability platform turns Kubernetes metrics into a live knowledge graph for topology, contextual alerting, and fast search.
 
-**Explore the docs:** <https://docs.falkordb.com/>
+**See all use cases:** <https://www.falkordb.com/use-cases/>
 
 Regards,
 
