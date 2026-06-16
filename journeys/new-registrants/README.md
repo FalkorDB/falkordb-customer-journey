@@ -73,9 +73,9 @@ Graphs make connected data simple to model and fast to query. Here is a quick pr
 **What teams build**
 
 - **GraphRAG and AI.** Retrieval grounded in a knowledge graph, using the GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- **Fraud detection.** A large payments processor surfaces fraud rings across IPs, devices, and transactions in real time.
+- **Network and infrastructure.** A Fortune 500 network provider models more than 60,000 topology graphs for live monitoring across US, EU, and SG.
 - **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
-- **Fraud detection.** Surface fraud rings by shared devices, phones, addresses, and IPs.
-- **Infrastructure and supply chain.** Map dependencies, blast radius, and single source of supply risk.
 
 **Explore the docs:** <https://docs.falkordb.com/>
 
