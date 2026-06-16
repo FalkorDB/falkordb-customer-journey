@@ -54,28 +54,30 @@ The FalkorDB Team
 
 ---
 
-## Step 2 (Day 3, if no reply): Get to your first query
+## Step 2 (Day 3, if no reply): Think in graphs
 
-**Goal:** help contacts who have not replied move from sign up to first query.
+**Goal:** teach the contact how graphs work and show a few things they can build, without pressure.
 
-**Subject:** A short path to your first FalkorDB query
+**Subject:** Think in graphs. Here is what you can build.
 
-Still getting set up? Here is a short path that most teams finish in under 15 minutes.
+Graphs make connected data simple to model and fast to query. Here is a quick primer, then a few things teams build on FalkorDB.
 
-1. Sign in to the Cloud console.
-2. Start a free trial instance.
-3. Connect with a client library or open the Browser UI.
-4. Run your first Cypher query.
+**Graph thinking in 60 seconds**
 
-**Pick your client library**
+- **Nodes are your entities.** A person, a product, a document. Each node carries labels and properties. See the data model: <https://docs.falkordb.com/datatypes.html>
+- **Relationships are first class.** They connect nodes directly, so fast traversals replace heavy joins.
+- **Cypher reads like a picture.** You describe the pattern you want and FalkorDB finds it. Explore Cypher: <https://docs.falkordb.com/cypher/>
 
-FalkorDB has first class clients for Python, Node.js, Java, Go, Rust, C#, and PHP: <https://docs.falkordb.com/getting-started/clients.html>
+**Start your free trial:** <https://app.falkordb.cloud/signin>
 
-**Helpful docs**
+**What teams build**
 
-- Cloud getting started: <https://docs.falkordb.com/cloud>
-- Cypher reference: <https://docs.falkordb.com/cypher/>
-- Browser UI: <https://docs.falkordb.com/browser/>
+- **GraphRAG and AI.** Retrieval grounded in a knowledge graph, using the GraphRAG SDK: <https://docs.falkordb.com/genai-tools/graphrag-sdk>
+- **Recommendations.** Personalized feeds and "customers who bought X also bought Y".
+- **Fraud detection.** Surface fraud rings by shared devices, phones, addresses, and IPs.
+- **Infrastructure and supply chain.** Map dependencies, blast radius, and single source of supply risk.
+
+**Explore the docs:** <https://docs.falkordb.com/>
 
 Regards,
 
