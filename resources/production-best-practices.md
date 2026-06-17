@@ -241,6 +241,25 @@ headroom is not waste — it absorbs:
   on copy-on-write; under write load this can transiently inflate RSS well above
   `used_memory`. Crossing the container limit triggers an **OOM kill** (exit 137).
 
+### Two limits to respect
+
+1. **`maxmemory` makes the instance read only.** When `used_memory` reaches the
+   configured `maxmemory`, FalkorDB rejects writes and the instance becomes read
+   only until memory is freed. Set `maxmemory` to about **80 percent** of the
+   memory available inside the container.
+2. **The container limit triggers an OOM kill.** Fork on save and replication can
+   push RSS above `used_memory`, so also leave room below the hard container limit.
+
+### Worked example: 32 GB host
+
+- A 32 GB host leaves about **30 GB** available inside the container after overhead.
+- Set `maxmemory` to about 80 percent of that, so about **24 GB**. That is the hard
+  ceiling. At 24 GB the instance turns read only.
+- Keep the working dataset well below the ceiling. Aim for about **19 GB** so the
+  dataset can grow and shrink without reaching 24 GB.
+- The larger the instance, the larger the absolute buffer you can hold below the
+  ceiling. Bigger instances are the safest option for a dataset that fluctuates.
+
 How to stay safe:
 
 - **Cap and monitor.** Set a Redis `maxmemory` and alert at 75%. Track
