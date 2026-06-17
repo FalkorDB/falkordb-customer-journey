@@ -28,6 +28,8 @@
 
 **Subject:** Welcome to FalkorDB. Start your free trial.
 
+**Preview text:** Here is how to get started in your first 5 minutes.
+
 Welcome to FalkorDB. FalkorDB Cloud is your fully managed graph database. It is built for ultra-low latency and a small memory footprint. We handle scale, security, and operations so you can focus on building.
 
 **What's next**
@@ -60,6 +62,8 @@ The FalkorDB Team
 
 **Subject:** See what teams build on FalkorDB
 
+**Preview text:** Real use cases from fraud to identity, built on graphs.
+
 From fraud detection to network monitoring to identity systems, teams use the FalkorDB graph engine to power real time, connected applications. They pick FalkorDB for speed at scale. See the benchmarks: <https://benchmark.falkordb.com/>
 
 **Start your free trial:** <https://app.falkordb.cloud/signin>
@@ -87,6 +91,8 @@ The FalkorDB Team
 **Goal:** close the series with practical best practices that help new users build fast, reliable apps. Leave a short docs link.
 
 **Subject:** A few best practices for building on FalkorDB
+
+**Preview text:** Simple tips for fast, reliable graphs at scale.
 
 This is the last email in this short series. Here are a few best practices to help you build fast, reliable applications on FalkorDB.
 
