@@ -10,6 +10,8 @@ These practices build on the focused guides linked throughout — start here, th
 
 ## TL;DR Checklist
 
+The checklist below is the set of main practices. The detailed sections follow.
+
 | # | Practice | Why it matters |
 |---|----------|----------------|
 | 1 | **Index every property you `MATCH` or `MERGE` on** | Turns full label scans into direct lookups; also speeds up writes and `MERGE` |
