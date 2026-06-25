@@ -341,6 +341,6 @@ See **[Parameterized Queries](parameterized-queries.md)** for client examples.
 
 ---
 
-Have questions? Reach out to the FalkorDB team. We're happy to help.
+Have questions? Open a support case in the [FalkorDB Cloud Console](https://app.falkordb.cloud) or email [support@falkordb.com](mailto:support@falkordb.com). We're happy to help.
 
 — The FalkorDB Team
