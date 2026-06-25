@@ -2,7 +2,7 @@
 
 > **⚠️ DRAFT** — This document is a work in progress and has not been finalized for general availability.
 
-A practical checklist for running FalkorDB reliably and at scale: indexing, read/write separation, sharding writes across graphs, access control, bulk loading, and memory headroom.
+A practical checklist for running FalkorDB reliably and at scale: indexing, read/write separation, distributing writes across graphs, parameterized queries, access control, bulk loading, and memory headroom.
 
 These practices build on the focused guides linked throughout — start here, then drill into the detailed resource for any topic.
 
@@ -14,25 +14,26 @@ The checklist below is the set of main practices. The detailed sections follow.
 
 | # | Practice | Why it matters |
 |---|----------|----------------|
-| 1 | **Index every property you `MATCH` or `MERGE` on** | Turns full label scans into direct lookups; also speeds up writes and `MERGE` |
+| 1 | **Index the properties you filter on** | Speeds up lookups by turning full label scans into index lookups; also speeds up `MERGE` |
 | 2 | **Send reads to replicas with `GRAPH.RO_QUERY`** | Frees the primary for writes and scales read throughput |
-| 3 | **Shard writes across multiple graphs** | Writes to one graph are serialized; multiple graphs write in parallel |
+| 3 | **Distribute writes across multiple graphs** | Writes to one graph are serialized; different graphs write in parallel |
 | 4 | **Keep write queries short and non-blocking** | A long write holds the graph and stalls everything queued behind it |
-| 5 | **Adopt a graph naming convention (prefixes)** | Enables ACL scoping, sharding, and per-tenant isolation |
+| 5 | **Adopt a graph naming convention (prefixes)** | Enables ACL scoping, write distribution, and per-tenant isolation |
 | 6 | **Lock down access with ACL roles** | Read-only vs read-write per graph prefix protects your data |
-| 7 | **Bulk-load with the right tool** | The bulk loader and batched `UNWIND` are far faster than row-by-row `CREATE` |
-| 8 | **Keep memory under ~75% of the container** | Leaves headroom for query working memory and fork-on-save (CoW) |
+| 7 | **Bulk-load with the right tool** | The bulk loader, `LOAD CSV`, and batched `UNWIND` are far faster than row-by-row `CREATE` |
+| 8 | **Keep memory under ~75% of the container** | Leaves headroom for query working memory and snapshotting |
+| 9 | **Use parameterized queries** | Cached query plans, smaller query text, and no query-string injection |
 
 ---
 
-## 1. Index Everything You Match On (Most Important)
+## 1. Index the Properties You Filter On (Most Important)
 
 Indexes are the single highest-impact change you can make. Without one, every
-`MATCH (p:Person {email: ...})` scans **all** `:Person` nodes — O(n) and slower as
-the graph grows. With one, it's a direct O(log n) lookup.
+`MATCH (p:Person {email: 'dana@acme.com'})` scans **all** `:Person` nodes (O(n)).
+With one, it's an O(log n) index lookup.
 
 ```cypher
--- Create before you load or query at scale
+-- Create indexes before you load or query the data
 CREATE INDEX FOR (p:Person) ON (p.email)
 CREATE INDEX FOR (o:Order)  ON (o.id)
 ```
@@ -42,7 +43,6 @@ Indexes help **writes too**, not just reads:
 - **`MERGE` depends on them.** `MERGE (p:Person {email: $e})` does a lookup first;
   without an index that lookup is a full scan on every upsert, which is the most
   common cause of slow loads.
-- Faster relationship creation when you `MATCH` both endpoints by an indexed key.
 
 **Trade-off:** indexes consume extra memory and add a small per-write maintenance
 cost. Index the properties you actually filter, join, or merge on — not every
@@ -78,14 +78,13 @@ Details and client examples: **[Read & Write Operations](read-write-operations.m
 
 ---
 
-## 3. Scale Writes by Sharding Across Multiple Graphs
+## 3. Scale Writes Across Multiple Graphs
 
 Writes to a **single graph are serialized** — one writer holds the graph while it
-runs. Reads, by contrast, run concurrently across the thread pool (`THREAD_COUNT`,
-which defaults to the number of logical cores) and across replicas.
+runs. Reads, by contrast, can execute concurrently against a graph.
 
 The implication: **a single graph's write throughput is bounded by one core.**
-To scale writes, split data across multiple graph keys that can be written in
+To scale writes, spread data across multiple graphs that can be written in
 parallel:
 
 ```
@@ -94,19 +93,28 @@ tenant:001   tenant:002   tenant:003   ...     ← written concurrently
    └── writer ───┴── writer ───┴── writer       up to THREAD_COUNT in parallel
 ```
 
-Good sharding keys: **per tenant, per region, per time window, or a hash bucket**
-(`shard:00` … `shard:NN`). This also keeps individual graphs smaller, which makes
-saves, replication, and per-graph memory reporting cheaper.
+Pick boundaries your domain already makes disjoint: **per customer, per tenant, per
+region, or per time window**. Each graph stands on its own, which also keeps
+individual graphs smaller and makes saves, replication, and per-graph memory
+reporting cheaper.
 
-> Avoid the opposite anti-pattern: funnelling every tenant's writes into one giant
-> shared graph, which serializes all of them through a single writer.
+> Avoid the opposite anti-pattern: overloading one shared graph with every tenant's
+> writes, which serializes all of them through a single writer.
 
 ---
 
 ## 4. Keep Write Queries Short and Non-Blocking
 
 Because a write holds the graph, one slow write delays everything queued behind it
-(and queries beyond `MAX_QUEUED_QUERIES` are rejected). Keep writes small and fast:
+(and queries beyond `MAX_QUEUED_QUERIES` are rejected).
+
+A query counts as a write the moment it contains any mutation, and it holds the
+graph for its **entire** execution, including read phases.
+`CREATE () MATCH (n)-[e]->(z) RETURN count(e)` does one trivial write, then scans the
+whole graph while still holding the write lock. Judge a write by its total runtime,
+not the size of its mutation.
+
+Keep writes small and fast:
 
 - **Optimize the write itself** — index the keys it looks up (see #1), `MATCH` by
   indexed properties, and avoid unbounded `MATCH` patterns inside a write.
@@ -114,7 +122,7 @@ Because a write holds the graph, one slow write delays everything queued behind 
   one massive transaction that holds the graph for seconds.
 - **Throttle write concurrency on the client.** Too many writer threads hammering
   the same graph just queue up — reduce the concurrent write load or spread it
-  across shards (see #3).
+  across multiple graphs (see #3).
 - **Use [parameterized queries](parameterized-queries.md)** so plans are cached and
   query text stays small.
 - **Set guardrails:** `TIMEOUT` / `TIMEOUT_MAX` to cap runaway queries and
@@ -130,14 +138,14 @@ redis-cli GRAPH.CONFIG SET QUERY_MEM_CAPACITY 1073741824   # 1 GiB per query
 ## 5. Graph Naming Conventions
 
 A graph name is a Redis key, so a consistent scheme pays off for access control,
-sharding, and operations.
+write distribution, and operations.
 
 **Recommended:** a `prefix:scope` structure using `:` as the separator.
 
 ```
 acme:orders          # <tenant>:<entity>
 prod:users           # <env>:<entity>
-shard:042            # <shard-bucket>
+eu-west:sessions     # <region>:<entity>
 analytics:2026-06    # <domain>:<time-window>
 ```
 
@@ -207,11 +215,24 @@ falkordb-bulk-insert acme:orders \
   -r KNOWS.csv
 ```
 
+**Load a CSV from the server with the `LOAD CSV` clause.** Good when the file sits in
+the import directory and you want to transform or convert columns as you ingest:
+
+```cypher
+LOAD CSV WITH HEADERS FROM 'file://Person.csv' AS row
+MERGE (p:Person {id: row['id']})
+SET p.name = row['name']
+```
+
+Values arrive as strings, so cast with `toInteger`, `toFloat`, and friends when
+needed. See the [LOAD CSV docs](https://docs.falkordb.com/cypher/load-csv.html).
+
 **Incremental loads from your app — batch with `UNWIND` + parameters:**
 
 ```cypher
 UNWIND $rows AS row
-MERGE (p:Person {id: row.id})
+WITH row.id AS row_id
+MERGE (p:Person {id: row_id})
 SET p.name = row.name
 ```
 
@@ -239,7 +260,7 @@ headroom is not waste — it absorbs:
 
 - **Query working memory** — joins, aggregations, and large result sets allocate
   transient memory.
-- **Fork-on-save / replication** — RDB `BGSAVE` and replica sync `fork()` and rely
+- **Snapshotting and replication** — RDB `BGSAVE` and replica sync `fork()` and rely
   on copy-on-write; under write load this can transiently inflate RSS well above
   `used_memory`. Crossing the container limit triggers an **OOM kill** (exit 137).
 
@@ -268,7 +289,7 @@ How to stay safe:
   `used_memory` and `used_memory_rss` (`INFO memory`).
 - **Bound per-query memory** with `QUERY_MEM_CAPACITY` so one query can't exhaust
   the instance.
-- **Right-size graphs** by sharding (#3) so no single graph dominates RAM, and a
+- **Right-size graphs** by splitting across multiple graphs (#3) so no single graph dominates RAM, and a
   save fork copies less.
 - **Find heavy graphs** with `GRAPH.MEMORY USAGE <graph>` (note: it reports whole
   MB and undercounts true RSS — use it for relative ranking).
@@ -280,6 +301,29 @@ redis-cli INFO memory | grep -E 'used_memory:|used_memory_rss:|maxmemory:'
 
 > **Tip:** In production, run the lighter `falkordb/falkordb-server` image (no
 > bundled browser) to free memory and CPU for the database.
+
+---
+
+## 9. Use Parameterized Queries
+
+Pass values as parameters instead of building query strings by hand. FalkorDB caches
+a plan for each distinct query shape, so a parameterized query is reused on every
+call rather than parsed and planned again:
+
+```cypher
+MATCH (p:Person {email: $email}) RETURN p
+```
+
+Why it matters:
+
+- **Cached plans.** The query text stays constant, so the planner reuses the
+  compiled plan instead of recompiling on each call.
+- **Smaller, safer query text.** Values travel separately from the query. That keeps
+  the text short and removes the risk of query-string injection.
+- **Natural batching.** Parameters pair cleanly with `UNWIND $rows` for bulk writes
+  (see #7).
+
+See **[Parameterized Queries](parameterized-queries.md)** for client examples.
 
 ---
 
@@ -297,6 +341,6 @@ redis-cli INFO memory | grep -E 'used_memory:|used_memory_rss:|maxmemory:'
 
 ---
 
-Have questions? Reply to this message — we're happy to help.
+Have questions? Reach out to the FalkorDB team. We're happy to help.
 
 — The FalkorDB Team
