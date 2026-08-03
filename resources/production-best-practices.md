@@ -15,14 +15,15 @@ The checklist below is the set of main practices. The detailed sections follow.
 | # | Practice | Why it matters |
 |---|----------|----------------|
 | 1 | **Index the properties you filter on** | Speeds up lookups by turning full label scans into index lookups; also speeds up `MERGE` |
-| 2 | **Send reads to replicas with `GRAPH.RO_QUERY`** | Frees the primary for writes and scales read throughput |
-| 3 | **Distribute writes across multiple graphs** | Writes to one graph are serialized; different graphs write in parallel |
-| 4 | **Keep write queries short and non-blocking** | A long write holds the graph and stalls everything queued behind it |
-| 5 | **Adopt a graph naming convention (prefixes)** | Enables ACL scoping, write distribution, and per-tenant isolation |
-| 6 | **Lock down access with ACL roles** | Read-only vs read-write per graph prefix protects your data |
-| 7 | **Bulk-load with the right tool** | The bulk loader, `LOAD CSV`, and batched `UNWIND` are far faster than row-by-row `CREATE` |
-| 8 | **Keep memory under ~75% of the container** | Leaves headroom for query working memory and snapshotting |
-| 9 | **Use parameterized queries** | Cached query plans, smaller query text, and no query-string injection |
+| 2 | **Profile expensive queries and cap them with `LIMIT`** | `GRAPH.EXPLAIN` and `GRAPH.PROFILE` reveal full scans and heavy steps; `LIMIT` trims CPU and payload |
+| 3 | **Send reads to replicas with `GRAPH.RO_QUERY`** \* | Frees the primary for writes and scales read throughput. **\* Only if you can tolerate slightly stale reads. If you need strong consistency, always read and write on the primary.** |
+| 4 | **Distribute writes across multiple graphs** | Writes to one graph are serialized; different graphs write in parallel |
+| 5 | **Keep write queries short and non-blocking** | A long write holds the graph and stalls everything queued behind it |
+| 6 | **Adopt a graph naming convention (prefixes)** | Enables ACL scoping, write distribution, and per-tenant isolation |
+| 7 | **Lock down access with ACL roles** | Read-only vs read-write per graph prefix protects your data |
+| 8 | **Bulk-load with the right tool** | The bulk loader, `LOAD CSV`, and batched `UNWIND` are far faster than row-by-row `CREATE` |
+| 9 | **Keep memory under ~75% of the container** | Leaves headroom for query working memory and snapshotting |
+| 10 | **Use parameterized queries** | Cached query plans, smaller query text, and no query-string injection |
 
 ---
 
@@ -58,7 +59,54 @@ Range, full-text, and vector indexes each suit different queries — see
 
 ---
 
-## 2. Separate Reads from Writes
+## 2. Diagnose and Optimize Expensive Queries
+
+High CPU and slow responses usually trace back to a few heavy queries, not to the
+size of the instance. Find those queries first, then fix them. Reach for a bigger
+instance last.
+
+**Preview the plan with `GRAPH.EXPLAIN`.** It returns the execution plan without
+running the query, so you can catch a full label scan or a bad join before it costs
+anything.
+
+```sh
+redis-cli GRAPH.EXPLAIN my_graph "MATCH (p:Person {email: 'dana@acme.com'}) RETURN p"
+```
+
+**Measure the real cost with `GRAPH.PROFILE`.** It runs the query and reports actual
+timing and row counts for every step, so you see where the time goes.
+
+```sh
+redis-cli GRAPH.PROFILE my_graph "MATCH (p:Person {name: 'Alice'})-[:KNOWS]->(f) RETURN f"
+```
+
+Read the plan for three common signals:
+
+- **Full label scans** mean a filtered property has no index. Add one (see #1).
+- **High row counts in early steps** mean the query pulls too much before it filters.
+  Put the most selective filter first.
+- **Cartesian products** mean a pattern is disconnected. Connect it.
+
+**Bound every retrieval with `LIMIT`.** When a query does not need the whole result
+set, cap it. `LIMIT` cuts both query time and the volume of data returned, which is
+often the quickest win under load.
+
+```cypher
+MATCH (p:Person)-[:POSTED]->(post:Post)
+RETURN p.name, post.title
+ORDER BY post.createdAt DESC
+LIMIT 20
+```
+
+Deeper query tuning, including variable length path bounds and scope control with
+`WITH`, lives in **[Indexing & Performance Tips](indexing-performance-tips.md)**.
+Command reference:
+[GRAPH.EXPLAIN](https://docs.falkordb.com/commands/graph.explain.html) and
+[GRAPH.PROFILE](https://docs.falkordb.com/commands/graph.profile.html).
+
+---
+
+## 3. Separate Reads from Writes
 
 FalkorDB uses a **primary/replica** model. Use the command that matches the workload:
 
@@ -68,17 +116,23 @@ FalkorDB uses a **primary/replica** model. Use the command that matches the work
 | `GRAPH.RO_QUERY` | Read-only | Primary **or** replicas |
 
 - Route read traffic to **replicas** with `GRAPH.RO_QUERY` to keep the primary
-  free for writes and to scale reads horizontally.
+  free for writes and to scale reads horizontally. **\***
 - `GRAPH.RO_QUERY` also **rejects accidental writes**, so it's a safety net.
 - Replicas are **eventually consistent** (async replication, ~ms lag). If a read
   must see a just-written value, either read from the primary or use `WAIT` —
   see **[Wait for Replication](wait-for-replication.md)**.
 
+> **\* Reading from replicas (or a backup) applies only if you can tolerate
+> slightly stale data.** Because replication is asynchronous, a replica may
+> return a value that is a few milliseconds behind the primary. If your workload
+> requires strong consistency, do not read from replicas or backups: **always
+> read from, and write to, the master/primary.**
+
 Details and client examples: **[Read & Write Operations](read-write-operations.md)**.
 
 ---
 
-## 3. Scale Writes Across Multiple Graphs
+## 4. Scale Writes Across Multiple Graphs
 
 Writes to a **single graph are serialized** — one writer holds the graph while it
 runs. Reads, by contrast, can execute concurrently against a graph.
@@ -103,7 +157,7 @@ reporting cheaper.
 
 ---
 
-## 4. Keep Write Queries Short and Non-Blocking
+## 5. Keep Write Queries Short and Non-Blocking
 
 Because a write holds the graph, one slow write delays everything queued behind it
 (and queries beyond `MAX_QUEUED_QUERIES` are rejected).
@@ -122,7 +176,7 @@ Keep writes small and fast:
   one massive transaction that holds the graph for seconds.
 - **Throttle write concurrency on the client.** Too many writer threads hammering
   the same graph just queue up — reduce the concurrent write load or spread it
-  across multiple graphs (see #3).
+  across multiple graphs (see #4).
 - **Use [parameterized queries](parameterized-queries.md)** so plans are cached and
   query text stays small.
 - **Set guardrails:** `TIMEOUT` / `TIMEOUT_MAX` to cap runaway queries and
@@ -135,7 +189,7 @@ redis-cli GRAPH.CONFIG SET QUERY_MEM_CAPACITY 1073741824   # 1 GiB per query
 
 ---
 
-## 5. Graph Naming Conventions
+## 6. Graph Naming Conventions
 
 A graph name is a Redis key, so a consistent scheme pays off for access control,
 write distribution, and operations.
@@ -163,11 +217,11 @@ Good naming is what makes the ACL rules in the next section concise.
 
 ---
 
-## 6. Control Access with ACL Roles
+## 7. Control Access with ACL Roles
 
 Use Redis/FalkorDB **ACLs** to grant least-privilege access per graph prefix, so
 analysts get read-only access and only services that should write can write.
-Combined with a naming convention (#5), one pattern covers a whole tenant or
+Combined with a naming convention (#6), one pattern covers a whole tenant or
 environment.
 
 **Read-only analyst, scoped to one tenant:**
@@ -196,11 +250,11 @@ Key points:
 - `ACL SETUSER` is **in-memory only** — configure an ACL file and run `ACL SAVE`
   so users survive a restart.
 
-See the [ACL command reference](https://docs.falkordb.com/commands/acl/).
+See the [ACL command reference](https://docs.falkordb.com/commands/acl.html).
 
 ---
 
-## 7. Bulk & Batch Loading
+## 8. Bulk & Batch Loading
 
 Match the tool to the job:
 
@@ -245,15 +299,15 @@ Loading best practices:
 - For pure-insert loads with no de-duplication, you can build indexes **after** the
   load (or use `DELAY_INDEXING`) to avoid per-row index maintenance.
 - **During a massive load, pause RDB autosave** (`CONFIG SET save ""`) to avoid
-  fork churn, then restore it afterward — while watching memory (see #8).
+  fork churn, then restore it afterward — while watching memory (see #9).
 - Use **`WAIT`** after a critical load before reading from replicas
   ([Wait for Replication](wait-for-replication.md)).
 
-Reference: [Bulk Loader docs](https://docs.falkordb.com/integration/bulk-loader/).
+Reference: [Bulk Loader docs](https://docs.falkordb.com/integration/bulk-loader.html).
 
 ---
 
-## 8. Memory Management — Stay Under ~75%
+## 9. Memory Management — Stay Under ~75%
 
 Keep `used_memory` below **~75%** of the container/instance limit. The remaining
 headroom is not waste — it absorbs:
@@ -289,7 +343,7 @@ How to stay safe:
   `used_memory` and `used_memory_rss` (`INFO memory`).
 - **Bound per-query memory** with `QUERY_MEM_CAPACITY` so one query can't exhaust
   the instance.
-- **Right-size graphs** by splitting across multiple graphs (#3) so no single graph dominates RAM, and a
+- **Right-size graphs** by splitting across multiple graphs (#4) so no single graph dominates RAM, and a
   save fork copies less.
 - **Find heavy graphs** with `GRAPH.MEMORY USAGE <graph>` (note: it reports whole
   MB and undercounts true RSS — use it for relative ranking).
@@ -304,7 +358,7 @@ redis-cli INFO memory | grep -E 'used_memory:|used_memory_rss:|maxmemory:'
 
 ---
 
-## 9. Use Parameterized Queries
+## 10. Use Parameterized Queries
 
 Pass values as parameters instead of building query strings by hand. FalkorDB caches
 a plan for each distinct query shape, so a parameterized query is reused on every
@@ -321,7 +375,7 @@ Why it matters:
 - **Smaller, safer query text.** Values travel separately from the query. That keeps
   the text short and removes the risk of query-string injection.
 - **Natural batching.** Parameters pair cleanly with `UNWIND $rows` for bulk writes
-  (see #7).
+  (see #8).
 
 See **[Parameterized Queries](parameterized-queries.md)** for client examples.
 
@@ -336,8 +390,8 @@ See **[Parameterized Queries](parameterized-queries.md)** for client examples.
 | Durable reads after writes | [Wait for Replication](wait-for-replication.md) |
 | Safe, cacheable queries | [Parameterized Queries](parameterized-queries.md) |
 | Schema design | [Data Modeling Guide](data-modeling-guide.md) |
-| Configuration parameters | [Configuration docs](https://docs.falkordb.com/getting-started/configuration/) |
-| Access control | [ACL docs](https://docs.falkordb.com/commands/acl/) |
+| Configuration parameters | [Configuration docs](https://docs.falkordb.com/getting-started/configuration.html) |
+| Access control | [ACL docs](https://docs.falkordb.com/commands/acl.html) |
 
 ---
 

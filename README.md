@@ -70,7 +70,7 @@ Lifecycle messages that engage users at key moments in their journey:
 | **Day 0** | [Welcome Message](messages/welcome_message_v1.md) | First database created |
 | **Day 0** | [Onboarding Message](messages/onboarding_message_v1.md) | Immediately on DB creation |
 | **Day 1–2** | [Support Contact](messages/support_contact_v1.md) | Part of onboarding sequence |
-| **Day 3–5** | [Tips & Best Practices](messages/tips_best_practices_v1.md) | Proactive to all new users |
+| **Day 3–5** | [Tips & Best Practices](archive/messages/tips_best_practices_v1.md) _(archived)_ | Proactive to all new users |
 | **On Event** | [First Query Celebration](messages/first_query_celebration_v1.md) | User runs their first query |
 | **Day 7+** | [Inactivity Check-In](messages/inactivity_checkin_v1.md) | No activity for 7 days |
 | **Day 7–10** | [GraphRAG Introduction](messages/graphrag_introduction_v1.md) | Proactive engagement |
@@ -78,6 +78,7 @@ Lifecycle messages that engage users at key moments in their journey:
 | **Day 30** | [Churn Prevention](messages/churn_prevention_v1.md) | No login for 30 days |
 | **On Event** | [DB Deletion Follow-Up](messages/db_deletion_followup_v1.md) | User deletes an existing Cloud database (two variants: with/without usage) |
 | **Usage-based** | [Upgrade & Scale Nudge](messages/upgrade_scale_nudge_v1.md) | Nearing resource limits |
+| **On Request** | [Query Performance Quick Wins](messages/query_performance_support_v1.md) | Customer reports slow queries or high CPU |
 
 ---
 
